@@ -38,13 +38,7 @@
             margin-bottom: 40px; /* Space between bios */
         }
 
-        .bio-container.active {<audio controls>
-        	<source src="The Duck Song.mp3" type="audio/mp3">
-        
-        	<p>Your browser doesn't support HTML5 audio. Here is
-        		a <a href="The Duck Song.mp3">link to the audio</a> instead.</p>
-        </audio>
-        
+        .bio-container.active {
             display: block;
         }
 
@@ -91,7 +85,7 @@
         <h2>Band Bio</h2>
     </div>
 
-    <audio id="background-audio" autoplay loop muted>
+    <audio autoplay loop>
         <source src="The Duck Song.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
@@ -141,11 +135,6 @@
                 sosMessage.style.display = "none";
             }, 1000);
         }
-
-        document.body.addEventListener("click", function() {
-            let audio = document.getElementById("background-audio");
-            audio.muted = false;
-        });
     </script>
 </body>
 </html>
