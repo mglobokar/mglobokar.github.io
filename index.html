@@ -14,6 +14,8 @@
             text-align: center;
             padding: 20px;
             font-family: Arial, sans-serif;
+            background-color: #4B0082; /* Deep purple */
+            color: white; /* White text */
         }
 
         .header {
@@ -77,6 +79,10 @@
             font-weight: bold;
             color: red;
         }
+
+        .comic {
+            font-family: "Comic Sans MS", cursive, sans-serif;
+        }
     </style>
 </head>
 <body>
@@ -85,8 +91,8 @@
         <h2>Band Bio</h2>
     </div>
 
-    <audio autoplay loop>
-        <source src="The Duck Song.mp3" type="audio/mpeg">
+    <audio id="background-audio" autoplay loop muted>
+        <source src="The Duck Song.mp3">
         Your browser does not support the audio element.
     </audio>
 
@@ -99,22 +105,17 @@
 
         <div id="max" class="bio-container active">
             <img src="MaxPhoto.jpg" alt="Max Globokar" onclick="flashSOS()">
-            <p>Max Globokar is a professional juggler and unicycle enthusiast but he absolutely isn't a clown. After losing his dog in a clown accident at a 
-              young age, he has since distanced himself from the profession, trying to change the face of a dying industry by rebranding himself as a "professional musician." 
-              He has toured with many of the greats, such as a world tour with both Mr. Tumble and Toto. He is a seasoned jazz guitarist and a world-renowned tin whistle player. 
-              Max is an original member of Plunger Award, following them on many world tours, most recently the "Poop Tour."</p>
+            <p><span class="comic">Max</span> Globokar <span class="comic">is</span> a <span class="comic">professional</span> juggler <span class="comic">and</span> unicycle <span class="comic">enthusiast</span> but <span class="comic">he</span> absolutely <span class="comic">isn't</span> a <span class="comic">clown</span>. After <span class="comic">losing</span> his <span class="comic">dog</span> in <span class="comic">a</span> clown <span class="comic">accident</span> at <span class="comic">a</span> young <span class="comic">age</span>, he <span class="comic">has</span> since <span class="comic">distanced</span> himself <span class="comic">from</span> the <span class="comic">profession</span>, trying <span class="comic">to</span> change <span class="comic">the</span> face <span class="comic">of</span> a <span class="comic">dying</span> industry <span class="comic">by</span> rebranding <span class="comic">himself</span> as <span class="comic">a</span> "professional <span class="comic">musician."</span></p>
         </div>
 
         <div id="paige" class="bio-container">
             <img src="Paige.jpg" alt="Paige Birgenheier" onclick="flashSOS()">
-            <p>Paige Birgenheier is a musician who sings sometimes when she feels like it. She spends most of her time crying and eating ramen, but when she feels like being a human, 
-               she likes to write her own songs with her imaginary roommate while doing trapeze.</p>
+            <p><span class="comic">Paige</span> Birgenheier <span class="comic">is</span> a <span class="comic">musician</span> who <span class="comic">sings</span> sometimes <span class="comic">when</span> she <span class="comic">feels</span> like <span class="comic">it.</span></p>
         </div>
 
         <div id="Eunseok" class="bio-container">
             <img src="Eunseok.jpg" alt="Eunseok" onclick="flashSOS()">
-            <p>He has experienced being a freshman four times — once in the Philippines, once in Korea, once in Minnesota, and then spent two years in the military. 
-               Now, for the first time, he’s been attending a university for over a year. This time, he's hoping to finally graduate this college.</p>
+            <p><span class="comic">He</span> has <span class="comic">experienced</span> being <span class="comic">a</span> freshman <span class="comic">four</span> times <span class="comic">—</span> once <span class="comic">in</span> the <span class="comic">Philippines,</span> once <span class="comic">in</span> Korea, <span class="comic">once</span> in <span class="comic">Minnesota,</span> and <span class="comic">then</span> spent <span class="comic">two</span> years <span class="comic">in</span> the <span class="comic">military.</span></p>
         </div>
     </div>
 
@@ -135,6 +136,12 @@
                 sosMessage.style.display = "none";
             }, 1000);
         }
+
+        document.body.addEventListener("click", function() {
+            let audio = document.getElementById("background-audio");
+            audio.muted = false;
+        });
     </script>
 </body>
 </html>
+
