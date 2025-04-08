@@ -85,8 +85,8 @@
         <h2>Band Bio</h2>
     </div>
 
-    <audio autoplay loop>
-        <source src="The Duck Song.mp3" type="audio/mpeg">
+    <audio id="background-audio" autoplay loop muted>
+        <source src="The Duck Song.mp3">
         Your browser does not support the audio element.
     </audio>
 
@@ -135,6 +135,11 @@
                 sosMessage.style.display = "none";
             }, 1000);
         }
+
+        document.body.addEventListener("click", function() {
+            let audio = document.getElementById("background-audio");
+            audio.muted = false;
+        });
     </script>
 </body>
 </html>
