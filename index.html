@@ -5,14 +5,41 @@
 
     <link rel="stylesheet" type="text/css" href="style.css">
     <style>
-        /* Center the entire body content */
+        /* General styling */
         body {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100vh;  /* Full viewport height */
             margin: 0;
-            text-align: center;  /* Center the text */
+            text-align: center;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+        }
+
+        .header h1, .header h2 {
+            margin: 5px 0;
+        }
+
+        .content {
+            margin-top: 100px; /* Space for fixed header */
+        }
+
+        .bio-container {
+            display: none;
+            margin-bottom: 40px; /* Space between bios */
+        }
+
+        .bio-container.active {
+            display: block;
         }
 
         img {
@@ -20,20 +47,68 @@
             height: auto; /* Maintain aspect ratio */
             margin: 20px 0; /* Add spacing */
         }
+
+        .nav-links {
+            margin-top: 20px;
+        }
+
+        .nav-links button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            background-color: #555;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .nav-links button:hover {
+            background-color: #777;
+        }
     </style>
 </head>
 <body>
-    <div>
-        <h1>Band Member Bios</h1>
-        <img src="MaxPhoto.jpg" alt="Max Globokar">
-        <p>Max Globokar is a professional juggler and unicycle enthusiast but he absolutely isn't a clown. After losing his dog in a clown accident at a 
-          young age, he has since distanced himself from the profession, trying to change the face of a dying industry by rebranding himself as a "professional musician." 
-          He has toured with many of the greats, such as a world tour with both Mr. Tumble and Toto. He is a seasoned jazz guitarist and a world-renowned tin whistle player. 
-          Max is an original member of Plunger Award, following them on many world tours, most recently the "Poop Tour."</p>
+    <div class="header">
+        <h1>Plunger Award</h1>
+        <h2>Band Bio</h2>
     </div>
-	
-<div>
-	<img src="Paige.jpg">
-	<p>Paige Birgenheier is a musician who sings sometimes when she feels like it. She spends most of her time crying and eating ramen but when she feels like being a human she likes to write her own songs with her imaginary roommate while doing trapeze.</p>
+
+    <div class="content">
+        <div class="nav-links">
+            <button onclick="showBio('max')">Max</button>
+            <button onclick="showBio('paige')">Paige</button>
+            <button onclick="showBio('Eunseok')">Eunseok</button>
+        </div>
+
+        <div id="max" class="bio-container active">
+            <img src="MaxPhoto.jpg" alt="Max Globokar">
+            <p>Max Globokar is a professional juggler and unicycle enthusiast but he absolutely isn't a clown. After losing his dog in a clown accident at a 
+              young age, he has since distanced himself from the profession, trying to change the face of a dying industry by rebranding himself as a "professional musician." 
+              He has toured with many of the greats, such as a world tour with both Mr. Tumble and Toto. He is a seasoned jazz guitarist and a world-renowned tin whistle player. 
+              Max is an original member of Plunger Award, following them on many world tours, most recently the "Poop Tour."</p>
+        </div>
+
+        <div id="paige" class="bio-container">
+            <img src="Paige.jpg" alt="Paige Birgenheier">
+            <p>Paige Birgenheier is a musician who sings sometimes when she feels like it. She spends most of her time crying and eating ramen, but when she feels like being a human, 
+               she likes to write her own songs with her imaginary roommate while doing trapeze.</p>
+        </div>
+
+        <div id="Eunseok" class="bio-container">
+            <img src="Eunseok.jpg" alt="Eunseok">
+            <p>He has experienced being a freshman four times — once in the Philippines, once in Korea, once in Minnesota, and then spent two years in the military. 
+               Now, for the first time, he’s been attending a university for over a year. This time, he's hoping to finally graduate this college.</p>
+        </div>
+    </div>
+
+    <script>
+        function showBio(bioId) {
+            document.querySelectorAll('.bio-container').forEach(function(bio) {
+                bio.classList.remove('active');
+            });
+            document.getElementById(bioId).classList.add('active');
+        }
+    </script>
 </body>
 </html>
+
