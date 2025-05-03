@@ -1,147 +1,202 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Plunger Award</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>John Doe | Senior Full Stack Developer</title>
+  <style>
+    :root {
+      --primary: #2e3a59;
+      --accent: #3498db;
+      --light: #f5f5f5;
+      --dark: #1a1a1a;
+      --shadow: rgba(0, 0, 0, 0.2);
+    }
 
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <style>
-        /* General styling */
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 0;
-            text-align: center;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-            background-color: #4B0082; /* Deep purple */
-            color: white; /* White text */
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: #333;
-            color: white;
-            padding: 10px 0;
-        }
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+    }
 
-        .header h1, .header h2 {
-            margin: 5px 0;
-        }
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
 
-        .content {
-            margin-top: 100px; /* Space for fixed header */
-        }
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
 
-        .bio-container {
-            display: none;
-            margin-bottom: 40px; /* Space between bios */
-        }
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.85;
+    }
 
-        .bio-container.active {
-            display: block;
-        }
+    nav {
+      display: flex;
+      justify-content: center;
+      background: var(--accent);
+    }
 
-        img {
-            width: 300px; /* Set image width to 300px */
-            height: auto; /* Maintain aspect ratio */
-            margin: 20px 0; /* Add spacing */
-            cursor: pointer;
-        }
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 1rem;
+      transition: background 0.3s;
+    }
 
-        .nav-links {
-            margin-top: 20px;
-        }
+    nav a:hover {
+      background: #217dbb;
+    }
 
-        .nav-links button {
-            padding: 10px 15px;
-            margin: 5px;
-            border: none;
-            background-color: #555;
-            color: white;
-            cursor: pointer;
-            font-size: 16px;
-        }
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 2rem;
+    }
 
-        .nav-links button:hover {
-            background-color: #777;
-        }
+    aside {
+      background: white;
+      padding: 1.5rem;
+      box-shadow: 0 0 10px var(--shadow);
+      border-radius: 8px;
+    }
 
-        #sos-message {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 100px;
-            font-weight: bold;
-            color: red;
-        }
+    section {
+      background: white;
+      padding: 1.5rem;
+      box-shadow: 0 0 10px var(--shadow);
+      border-radius: 8px;
+      margin-bottom: 2rem;
+    }
 
-        .comic {
-            font-family: "Comic Sans MS", cursive, sans-serif;
-        }
-    </style>
+    h2 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 0.5rem;
+    }
+
+    ul {
+      list-style: square inside;
+      padding-left: 1rem;
+    }
+
+    footer {
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Plunger Award</h1>
-        <h2>Band Bio</h2>
+  <header>
+    <h1>John Doe</h1>
+    <p>Senior Full Stack Developer | AI Enthusiast | Open Source Contributor</p>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+  </nav>
+
+  <main>
+    <aside>
+      <h2>Contact</h2>
+      <p>Email: john@example.com</p>
+      <p>Phone: +1 555 123 4567</p>
+      <p>Location: San Francisco, CA</p>
+
+      <h2>Languages</h2>
+      <ul>
+        <li>English (Fluent)</li>
+        <li>Spanish (Professional)</li>
+      </ul>
+
+      <h2>Certifications</h2>
+      <ul>
+        <li>AWS Certified Solutions Architect</li>
+        <li>Google Cloud Engineer</li>
+      </ul>
+    </aside>
+
+    <div>
+      <section id="about">
+        <h2>About Me</h2>
+        <p>I am a passionate software engineer with over 10 years of experience building scalable web applications, managing cross-functional teams, and delivering user-focused solutions. My core expertise lies in React, Node.js, TypeScript, and cloud architecture.</p>
+      </section>
+
+      <section id="experience">
+        <h2>Experience</h2>
+        <h3>Lead Developer, TechNova Inc. (2020–Present)</h3>
+        <ul>
+          <li>Managed a team of 12 engineers and designers.</li>
+          <li>Led the migration to a microservices architecture.</li>
+          <li>Integrated CI/CD pipelines with Docker and Kubernetes.</li>
+        </ul>
+
+        <h3>Senior Engineer, SoftPulse Ltd. (2015–2020)</h3>
+        <ul>
+          <li>Built dynamic dashboards using React and D3.js.</li>
+          <li>Optimized legacy systems, reducing load times by 70%.</li>
+        </ul>
+      </section>
+
+      <section id="skills">
+        <h2>Technical Skills</h2>
+        <ul>
+          <li>Languages: JavaScript, TypeScript, Python, Go</li>
+          <li>Frontend: React, Vue, Next.js, HTML5/CSS3</li>
+          <li>Backend: Node.js, Express, Django, REST APIs</li>
+          <li>DevOps: AWS, GCP, Docker, Kubernetes, Terraform</li>
+          <li>Database: PostgreSQL, MongoDB, Redis</li>
+        </ul>
+      </section>
+
+      <section id="projects">
+        <h2>Notable Projects</h2>
+        <h4>Project Atlas</h4>
+        <p>An AI-powered document classifier used by 30+ enterprises. Built with FastAPI and fine-tuned BERT models.</p>
+
+        <h4>PulseDashboard</h4>
+        <p>A real-time health metrics dashboard for hospitals. Scaled to handle over 10k concurrent users.</p>
+      </section>
+
+      <section id="education">
+        <h2>Education</h2>
+        <p><strong>M.S. in Computer Science</strong> — Stanford University, 2014</p>
+        <p><strong>B.S. in Software Engineering</strong> — UCLA, 2012</p>
+      </section>
     </div>
+  </main>
 
-    <audio id="background-audio" autoplay loop muted>
-        <source src="The Duck Song.mp3">
-        Your browser does not support the audio element.
-    </audio>
-
-    <div class="content">
-        <div class="nav-links">
-            <button onclick="showBio('max')">Max</button>
-            <button onclick="showBio('paige')">Paige</button>
-            <button onclick="showBio('Eunseok')">Eunseok</button>
-        </div>
-
-        <div id="max" class="bio-container active">
-            <img src="MaxPhoto.jpg" alt="Max Globokar" onclick="flashSOS()">
-            <p><span class="comic">Max</span> Globokar <span class="comic">is</span> a <span class="comic">professional</span> juggler <span class="comic">and</span> unicycle <span class="comic">enthusiast</span> but <span class="comic">he</span> absolutely <span class="comic">isn't</span> a <span class="comic">clown</span>. After <span class="comic">losing</span> his <span class="comic">dog</span> in <span class="comic">a</span> clown <span class="comic">accident</span> at <span class="comic">a</span> young <span class="comic">age</span>, he <span class="comic">has</span> since <span class="comic">distanced</span> himself <span class="comic">from</span> the <span class="comic">profession</span>, trying <span class="comic">to</span> change <span class="comic">the</span> face <span class="comic">of</span> a <span class="comic">dying</span> industry <span class="comic">by</span> rebranding <span class="comic">himself</span> as <span class="comic">a</span> "professional <span class="comic">musician."</span></p>
-        </div>
-
-        <div id="paige" class="bio-container">
-            <img src="Paige.jpg" alt="Paige Birgenheier" onclick="flashSOS()">
-            <p><span class="comic">Paige</span> Birgenheier <span class="comic">is</span> a <span class="comic">musician</span> who <span class="comic">sings</span> sometimes <span class="comic">when</span> she <span class="comic">feels</span> like <span class="comic">it.</span></p>
-        </div>
-
-        <div id="Eunseok" class="bio-container">
-            <img src="Eunseok.jpg" alt="Eunseok" onclick="flashSOS()">
-            <p><span class="comic">He</span> has <span class="comic">experienced</span> being <span class="comic">a</span> freshman <span class="comic">four</span> times <span class="comic">—</span> once <span class="comic">in</span> the <span class="comic">Philippines,</span> once <span class="comic">in</span> Korea, <span class="comic">once</span> in <span class="comic">Minnesota,</span> and <span class="comic">then</span> spent <span class="comic">two</span> years <span class="comic">in</span> the <span class="comic">military.</span></p>
-        </div>
-    </div>
-
-    <div id="sos-message">SOS</div>
-
-    <script>
-        function showBio(bioId) {
-            document.querySelectorAll('.bio-container').forEach(function(bio) {
-                bio.classList.remove('active');
-            });
-            document.getElementById(bioId).classList.add('active');
-        }
-
-        function flashSOS() {
-            let sosMessage = document.getElementById("sos-message");
-            sosMessage.style.display = "block";
-            setTimeout(() => {
-                sosMessage.style.display = "none";
-            }, 1000);
-        }
-
-        document.body.addEventListener("click", function() {
-            let audio = document.getElementById("background-audio");
-            audio.muted = false;
-        });
-    </script>
+  <footer>
+    <p>&copy; 2025 John Doe | Built with HTML &amp; ❤️</p>
+  </footer>
 </body>
 </html>
-
