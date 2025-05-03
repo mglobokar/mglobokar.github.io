@@ -3,16 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>John Doe | Senior Full Stack Developer</title>
+  <title>Echo Vale | Music Producer & Engineer</title>
   <style>
+    /* ===== Root Variables ===== */
     :root {
-      --primary: #2e3a59;
-      --accent: #3498db;
-      --light: #f5f5f5;
-      --dark: #1a1a1a;
-      --shadow: rgba(0, 0, 0, 0.2);
+      --bg: #0a0a0a;
+      --text: #f0f0f0;
+      --highlight: #9f00c5;
+      --accent: #00ffe1;
+      --muted: #888;
+      --font: 'Segoe UI', sans-serif;
     }
 
+    /* ===== Reset and Base Styles ===== */
     * {
       margin: 0;
       padding: 0;
@@ -20,183 +23,197 @@
     }
 
     body {
-      font-family: "Segoe UI", sans-serif;
-      background: var(--light);
-      color: var(--dark);
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
       line-height: 1.6;
+      background-image: radial-gradient(circle at top left, #1a1a1a, #000);
+      overflow-x: hidden;
     }
 
     header {
-      background: var(--primary);
-      color: white;
-      padding: 2rem;
       text-align: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+      border-bottom: 1px solid var(--highlight);
     }
 
     header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+      font-size: 3rem;
+      color: var(--accent);
+      text-shadow: 0 0 10px var(--highlight);
     }
 
     header p {
       font-size: 1.2rem;
-      opacity: 0.85;
+      color: var(--muted);
+      margin-top: 0.5rem;
     }
 
     nav {
       display: flex;
       justify-content: center;
-      background: var(--accent);
+      background: #111;
+      padding: 0.5rem;
     }
 
     nav a {
-      color: white;
+      color: var(--accent);
       text-decoration: none;
-      padding: 1rem;
-      transition: background 0.3s;
+      margin: 0 1rem;
+      padding: 0.5rem;
+      border-bottom: 2px solid transparent;
+      transition: all 0.3s ease;
     }
 
     nav a:hover {
-      background: #217dbb;
+      border-bottom: 2px solid var(--highlight);
+      color: white;
     }
 
     main {
-      max-width: 1200px;
-      margin: 2rem auto;
+      max-width: 1100px;
+      margin: 3rem auto;
       padding: 1rem;
       display: grid;
       grid-template-columns: 1fr 2fr;
       gap: 2rem;
     }
 
-    aside {
-      background: white;
-      padding: 1.5rem;
-      box-shadow: 0 0 10px var(--shadow);
-      border-radius: 8px;
-    }
-
-    section {
-      background: white;
-      padding: 1.5rem;
-      box-shadow: 0 0 10px var(--shadow);
-      border-radius: 8px;
-      margin-bottom: 2rem;
+    aside, section {
+      background: #111;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(159, 0, 197, 0.3);
     }
 
     h2 {
-      color: var(--primary);
+      color: var(--highlight);
       margin-bottom: 1rem;
-      border-bottom: 2px solid var(--accent);
-      padding-bottom: 0.5rem;
-    }
-
-    ul {
-      list-style: square inside;
+      border-left: 4px solid var(--accent);
       padding-left: 1rem;
     }
 
+    h3 {
+      color: var(--accent);
+      margin-top: 1rem;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    ul li {
+      padding-left: 1.2rem;
+      margin-bottom: 0.8rem;
+      position: relative;
+    }
+
+    ul li::before {
+      content: '🎛️';
+      position: absolute;
+      left: 0;
+    }
+
     footer {
-      background: var(--primary);
-      color: white;
       text-align: center;
-      padding: 1rem;
-      margin-top: 2rem;
+      padding: 2rem;
+      background: #111;
+      color: var(--muted);
+      margin-top: 3rem;
     }
 
     @media (max-width: 768px) {
       main {
         grid-template-columns: 1fr;
+        padding: 1rem;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>John Doe</h1>
-    <p>Senior Full Stack Developer | AI Enthusiast | Open Source Contributor</p>
+    <h1>Echo Vale</h1>
+    <p>Music Producer • Audio Engineer • Sound Designer</p>
   </header>
 
   <nav>
-    <a href="#about">About</a>
-    <a href="#experience">Experience</a>
+    <a href="#bio">Bio</a>
+    <a href="#credits">Credits</a>
+    <a href="#gear">Gear</a>
     <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
   </nav>
 
   <main>
     <aside>
-      <h2>Contact</h2>
-      <p>Email: john@example.com</p>
-      <p>Phone: +1 555 123 4567</p>
-      <p>Location: San Francisco, CA</p>
-
-      <h2>Languages</h2>
+      <h2>Quick Stats</h2>
+      <p><strong>Genres:</strong> Synthwave, R&B, Ambient, Indie</p>
+      <p><strong>Studio:</strong> Neon Vault, LA</p>
+      <p><strong>Years Active:</strong> 2010–Present</p>
+      
+      <h2>Social</h2>
       <ul>
-        <li>English (Fluent)</li>
-        <li>Spanish (Professional)</li>
-      </ul>
-
-      <h2>Certifications</h2>
-      <ul>
-        <li>AWS Certified Solutions Architect</li>
-        <li>Google Cloud Engineer</li>
+        <li><a href="#" style="color: var(--accent);">Instagram</a></li>
+        <li><a href="#" style="color: var(--accent);">SoundCloud</a></li>
+        <li><a href="#" style="color: var(--accent);">Bandcamp</a></li>
       </ul>
     </aside>
 
     <div>
-      <section id="about">
-        <h2>About Me</h2>
-        <p>I am a passionate software engineer with over 10 years of experience building scalable web applications, managing cross-functional teams, and delivering user-focused solutions. My core expertise lies in React, Node.js, TypeScript, and cloud architecture.</p>
+      <section id="bio">
+        <h2>Bio</h2>
+        <p>Echo Vale is a genre-bending music producer and audio engineer known for blending analog warmth with futuristic textures. With over 15 years in the industry, Echo’s sonic fingerprints can be found on indie chart-toppers, cinematic scores, and experimental art installations.</p>
       </section>
 
-      <section id="experience">
-        <h2>Experience</h2>
-        <h3>Lead Developer, TechNova Inc. (2020–Present)</h3>
+      <section id="credits">
+        <h2>Production Credits</h2>
+        <h3>Albums</h3>
         <ul>
-          <li>Managed a team of 12 engineers and designers.</li>
-          <li>Led the migration to a microservices architecture.</li>
-          <li>Integrated CI/CD pipelines with Docker and Kubernetes.</li>
+          <li>"Velvet Engine" — Luna Dusk (2023)</li>
+          <li>"Slow Static" — Self-Released (2022)</li>
+          <li>"Pulse Memory" — EtherKid (2021)</li>
         </ul>
-
-        <h3>Senior Engineer, SoftPulse Ltd. (2015–2020)</h3>
+        <h3>Film & Sync</h3>
         <ul>
-          <li>Built dynamic dashboards using React and D3.js.</li>
-          <li>Optimized legacy systems, reducing load times by 70%.</li>
+          <li>Netflix Original: *Glass Garden* (Sound Design)</li>
+          <li>Indie Short: *Static Bloom* (Original Score)</li>
+        </ul>
+      </section>
+
+      <section id="gear">
+        <h2>Gear List</h2>
+        <ul>
+          <li>Moog Subsequent 37</li>
+          <li>Roland Juno-106</li>
+          <li>Universal Audio Apollo Twin X</li>
+          <li>Focal Alpha 65 Monitors</li>
+          <li>DAWs: Ableton Live, Logic Pro X</li>
         </ul>
       </section>
 
       <section id="skills">
-        <h2>Technical Skills</h2>
+        <h2>Skills</h2>
         <ul>
-          <li>Languages: JavaScript, TypeScript, Python, Go</li>
-          <li>Frontend: React, Vue, Next.js, HTML5/CSS3</li>
-          <li>Backend: Node.js, Express, Django, REST APIs</li>
-          <li>DevOps: AWS, GCP, Docker, Kubernetes, Terraform</li>
-          <li>Database: PostgreSQL, MongoDB, Redis</li>
+          <li>Sound Design & Synthesis</li>
+          <li>Mixing & Mastering</li>
+          <li>Field Recording</li>
+          <li>Studio Setup & Acoustics</li>
+          <li>Collaborative Production</li>
         </ul>
       </section>
 
-      <section id="projects">
-        <h2>Notable Projects</h2>
-        <h4>Project Atlas</h4>
-        <p>An AI-powered document classifier used by 30+ enterprises. Built with FastAPI and fine-tuned BERT models.</p>
-
-        <h4>PulseDashboard</h4>
-        <p>A real-time health metrics dashboard for hospitals. Scaled to handle over 10k concurrent users.</p>
-      </section>
-
-      <section id="education">
-        <h2>Education</h2>
-        <p><strong>M.S. in Computer Science</strong> — Stanford University, 2014</p>
-        <p><strong>B.S. in Software Engineering</strong> — UCLA, 2012</p>
+      <section id="contact">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:contact@echovale.com" style="color: var(--accent);">contact@echovale.com</a></p>
+        <p>Studio Bookings: Available for in-person and remote sessions.</p>
       </section>
     </div>
   </main>
 
   <footer>
-    <p>&copy; 2025 John Doe | Built with HTML &amp; ❤️</p>
+    <p>🎚️ Echo Vale • Los Angeles, CA • © 2025</p>
   </footer>
 </body>
 </html>
