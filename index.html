@@ -1,182 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Echo Vale | Music Producer</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Echo Vale | Gear</title>
   <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=DM+Serif+Display&display=swap" rel="stylesheet">
-  <style>
-    /* === VARIABLES === */
-    :root {
-      --bg: #f4f1ec;
-      --paper: #fffdf8;
-      --ink: #1e1e1e;
-      --highlight: #a96c4b;
-      --soft-border: #e0ddd7;
-      --font-heading: 'DM Serif Display', serif;
-      --font-hand: 'Patrick Hand', cursive;
-    }
-
-    /* === RESET === */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      background-color: var(--bg);
-      color: var(--ink);
-      font-family: var(--font-hand);
-      line-height: 1.6;
-    }
-
-    header {
-      text-align: center;
-      padding: 4rem 2rem;
-      border-bottom: 2px dashed var(--highlight);
-      background-color: var(--paper);
-    }
-
-    header h1 {
-      font-size: 3rem;
-      font-family: var(--font-heading);
-      color: var(--highlight);
-    }
-
-    header p {
-      margin-top: 0.5rem;
-      font-size: 1.2rem;
-    }
-
-    nav {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      padding: 1rem;
-      gap: 0.5rem;
-      background-color: var(--paper);
-      border-bottom: 2px dashed var(--highlight);
-    }
-
-    nav a {
-      padding: 0.5rem 1rem;
-      background: transparent;
-      border: 1px solid var(--highlight);
-      border-radius: 6px;
-      text-decoration: none;
-      color: var(--ink);
-      transition: background 0.3s;
-    }
-
-    nav a:hover {
-      background-color: var(--highlight);
-      color: white;
-    }
-
-    main {
-      max-width: 1000px;
-      margin: 2rem auto;
-      padding: 1rem;
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 2rem;
-    }
-
-    aside, section {
-      background-color: var(--paper);
-      padding: 2rem;
-      border: 2px dashed var(--soft-border);
-      border-radius: 10px;
-      box-shadow: 2px 2px 4px rgba(0,0,0,0.05);
-      opacity: 0;
-      animation: fadeIn 0.8s ease-in-out forwards;
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-
-    h2 {
-      font-family: var(--font-heading);
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-      color: var(--highlight);
-    }
-
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    li::before {
-      content: '🎶';
-      margin-right: 0.5rem;
-    }
-
-    .btn {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.4rem 1rem;
-      background: var(--highlight);
-      color: white;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .btn:hover {
-      background: #8a5538;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.9rem;
-      color: #555;
-    }
-
-    @media (max-width: 768px) {
-      main {
-        grid-template-columns: 1fr;
-        padding: 1rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <header>
     <h1>Echo Vale</h1>
-    <p>Music Producer • Audio Engineer • Storyteller of Sound</p>
+    <p>Studio Setup & Favorite Tools</p>
   </header>
 
   <nav>
-    <a href="#bio">Bio</a>
-    <a href="#credits">Credits</a>
-    <a href="#gear">Gear</a>
-    <a href="#skills">Skills</a>
-    <a href="#contact">Contact</a>
+    <a href="index.html">Home</a>
+    <a href="credits.html">Credits</a>
+    <a href="gear.html">Gear</a>
+    <a href="skills.html">Skills</a>
+    <a href="contact.html">Contact</a>
   </nav>
 
   <main>
-    <aside>
-      <h2>Quick Notes</h2>
-      <p><strong>Genres:</strong> Synthwave, R&B, Ambient, Indie</p>
-      <p><strong>Studio:</strong> Neon Vault, Los Angeles</p>
-      <p><strong>Years Active:</strong> Since 2010</p>
-
-      <h2>Links</h2>
+    <section>
+      <h2>Studio Gear</h2>
       <ul>
-        <li><a href="#">Instagram</a></li>
-        <li><a href="#">SoundCloud</a></li>
-        <li><a href="#">Bandcamp</a></li>
+        <li>Moog Subsequent 37</li>
+        <li>Roland Juno-106</li>
+        <li>Universal Audio Apollo Twin X</li>
+        <li>Focal Alpha 65 Monitors</li>
+        <li>Shure SM7B, Rode NT1-A, AKG C414</li>
+        <li>DAW: Ableton Live & Logic Pro</li>
       </ul>
-    </aside>
+    </section>
+  </main>
 
-    <div>
-      <section id="bio">
-        <h2>About Echo</h2>
-        <p>Echo Vale is a sonic explorer blending nostalgic textures with cinematic depth. From vinyl fuzz to shimmering synth
+  <footer>
+    <p>© 2025 Echo Vale — crafted with creativity & coffee</p>
+  </footer>
+</body>
+</html>
+
