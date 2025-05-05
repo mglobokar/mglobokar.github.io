@@ -1,43 +1,440 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Echo Vale | Gear</title>
-  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=DM+Serif+Display&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Artist Portfolio - Producer | Engineer | Multi-Instrumentalist</title>
+<style>
+  /* Reset and base */
+  * {
+    box-sizing: border-box;
+  }
+  body, html {
+    margin: 0; padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #121212;
+    color: #eee;
+    height: 100vh;
+    display: flex;
+  }
+
+  /* Sidebar navigation */
+  nav {
+    width: 280px;
+    background: #1e1e1e;
+    display: flex;
+    flex-direction: column;
+    padding-top: 2rem;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    border-right: 2px solid #333;
+    z-index: 1000;
+  }
+  nav h1 {
+    color: #0af;
+    font-weight: 900;
+    font-size: 1.8rem;
+    margin: 0 1.5rem 2rem;
+    letter-spacing: 2px;
+  }
+  nav ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  nav li {
+    position: relative;
+  }
+  nav > ul > li {
+    border-bottom: 1px solid #333;
+  }
+  nav a, nav button.dropbtn {
+    display: block;
+    color: #bbb;
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  nav a:hover, nav button.dropbtn:hover {
+    background: #0af;
+    color: #fff;
+  }
+
+  /* Dropdown container */
+  .dropdown {
+    position: relative;
+  }
+  /* Dropdown content hidden by default */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    background: #222;
+    min-width: 220px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.7);
+    border-radius: 4px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+    z-index: 1100;
+  }
+  /* Dropdown links */
+  .dropdown-content a {
+    padding: 0.8rem 1.2rem;
+    color: #ccc;
+    display: block;
+    font-weight: 500;
+    border-bottom: 1px solid #333;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  .dropdown-content a:last-child {
+    border-bottom: none;
+  }
+  .dropdown-content a:hover {
+    background-color: #0af;
+    color: #fff;
+  }
+  /* Show dropdown on hover with fade-in */
+  .dropdown:hover > .dropdown-content {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Main content area */
+  main {
+    margin-left: 280px;
+    padding: 2rem;
+    flex: 1;
+    overflow-y: auto;
+    background: #181818;
+  }
+
+  /* Portfolio grid: 3 columns, no gap */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+  .portfolio-item {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .portfolio-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  /* Zoom image on hover */
+  .portfolio-item:hover img {
+    transform: scale(1.1);
+  }
+  /* Overlay with project name */
+  .portfolio-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(10, 170, 255, 0.85);
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    font-weight: 700;
+    font-size: 1.2rem;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+    user-select: none;
+  }
+  .portfolio-item:hover .portfolio-overlay {
+    transform: translateY(0);
+  }
+
+  /* Lightbox styles */
+  #lightbox {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    padding: 1rem;
+  }
+  #lightbox.active {
+    display: flex;
+  }
+  #lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 8px;
+    box-shadow: 0 0 40px #0af;
+  }
+  #lightbox .close-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    font-size: 2.5rem;
+    color: #0af;
+    cursor: pointer;
+    user-select: none;
+    font-weight: 900;
+  }
+  #lightbox .nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 3rem;
+    color: #0af;
+    cursor: pointer;
+    user-select: none;
+    padding: 0 1rem;
+    font-weight: 900;
+    background: rgba(20,20,20,0.6);
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+  }
+  #lightbox .nav-btn:hover {
+    background: #0af;
+    color: #121212;
+  }
+  #lightbox .prev-btn {
+    left: 2rem;
+  }
+  #lightbox .next-btn {
+    right: 2rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    main {
+      margin-left: 0;
+      padding: 1rem;
+    }
+    .portfolio-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    nav {
+      position: relative;
+      width: 100%;
+      height: auto;
+      flex-direction: row;
+      border-right: none;
+      border-bottom: 2px solid #333;
+      overflow-x: auto;
+      white-space: nowrap;
+      padding: 0.5rem 1rem;
+    }
+    nav h1 {
+      margin: 0 1rem 0 0;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      align-self: center;
+    }
+    nav ul {
+      display: flex;
+      flex-wrap: nowrap;
+      margin: 0;
+      padding: 0;
+      flex-shrink: 0;
+    }
+    nav li {
+      border: none;
+    }
+    nav a, nav button.dropbtn {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+    .dropdown-content {
+      position: static;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      background: #222;
+      box-shadow: none;
+      min-width: auto;
+      border-radius: 0;
+      display: none;
+    }
+    .dropdown:hover > .dropdown-content {
+      display: block;
+    }
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Echo Vale</h1>
-    <p>Studio Setup & Favorite Tools</p>
-  </header>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="credits.html">Credits</a>
-    <a href="gear.html">Gear</a>
-    <a href="skills.html">Skills</a>
-    <a href="contact.html">Contact</a>
-  </nav>
+<nav aria-label="Primary Navigation">
+  <h1>ArtistName</h1>
+  <ul>
+    <li class="dropdown">
+      <button class="dropbtn" aria-haspopup="true" aria-expanded="false">About</button>
+      <div class="dropdown-content" role="menu" aria-label="About submenu">
+        <a href="#bio" role="menuitem">Bio</a>
+        <a href="#collaborations" role="menuitem">Collaborations</a>
+        <a href="#awards" role="menuitem">Awards</a>
+      </div>
+    </li>
+    <li class="dropdown">
+      <button class="dropbtn" aria-haspopup="true" aria-expanded="false">Portfolio</button>
+      <div class="dropdown-content" role="menu" aria-label="Portfolio submenu">
+        <a href="#productions" role="menuitem">Productions</a>
+        <a href="#engineering" role="menuitem">Engineering</a>
+        <a href="#instruments" role="menuitem">Multi-Instrumentalist</a>
+      </div>
+    </li>
+    <li class="dropdown">
+      <button class="dropbtn" aria-haspopup="true" aria-expanded="false">Music</button>
+      <div class="dropdown-content" role="menu" aria-label="Music submenu">
+        <a href="#tracks" role="menuitem">Tracks</a>
+        <a href="#remixes" role="menuitem">Remixes</a>
+        <a href="#live" role="menuitem">Live Sessions</a>
+      </div>
+    </li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-  <main>
-    <section>
-      <h2>Studio Gear</h2>
-      <ul>
-        <li>Moog Subsequent 37</li>
-        <li>Roland Juno-106</li>
-        <li>Universal Audio Apollo Twin X</li>
-        <li>Focal Alpha 65 Monitors</li>
-        <li>Shure SM7B, Rode NT1-A, AKG C414</li>
-        <li>DAW: Ableton Live & Logic Pro</li>
-      </ul>
-    </section>
-  </main>
+<main>
+  <section id="portfolio" aria-label="Portfolio Projects">
+    <div class="portfolio-grid">
+      <div class="portfolio-item" tabindex="0" data-project="Project Alpha" data-images="https://picsum.photos/id/1011/800/600,https://picsum.photos/id/1012/800/600,https://picsum.photos/id/1013/800/600">
+        <img src="https://picsum.photos/id/1011/400/300" alt="Project Alpha cover image" />
+        <div class="portfolio-overlay">Project Alpha</div>
+      </div>
+      <div class="portfolio-item" tabindex="0" data-project="Project Beta" data-images="https://picsum.photos/id/1021/800/600,https://picsum.photos/id/1022/800/600,https://picsum.photos/id/1023/800/600">
+        <img src="https://picsum.photos/id/1021/400/300" alt="Project Beta cover image" />
+        <div class="portfolio-overlay">Project Beta</div>
+      </div>
+      <div class="portfolio-item" tabindex="0" data-project="Project Gamma" data-images="https://picsum.photos/id/1031/800/600,https://picsum.photos/id/1032/800/600,https://picsum.photos/id/1033/800/600">
+        <img src="https://picsum.photos/id/1031/400/300" alt="Project Gamma cover image" />
+        <div class="portfolio-overlay">Project Gamma</div>
+      </div>
+      <div class="portfolio-item" tabindex="0" data-project="Project Delta" data-images="https://picsum.photos/id/1041/800/600,https://picsum.photos/id/1042/800/600,https://picsum.photos/id/1043/800/600">
+        <img src="https://picsum.photos/id/1041/400/300" alt="Project Delta cover image" />
+        <div class="portfolio-overlay">Project Delta</div>
+      </div>
+      <div class="portfolio-item" tabindex="0" data-project="Project Epsilon" data-images="https://picsum.photos/id/1051/800/600,https://picsum.photos/id/1052/800/600,https://picsum.photos/id/1053/800/600">
+        <img src="https://picsum.photos/id/1051/400/300" alt="Project Epsilon cover image" />
+        <div class="portfolio-overlay">Project Epsilon</div>
+      </div>
+      <div class="portfolio-item" tabindex="0" data-project="Project Zeta" data-images="https://picsum.photos/id/1061/800/600,https://picsum.photos/id/1062/800/600,https://picsum.photos/id/1063/800/600">
+        <img src="https://picsum.photos/id/1061/400/300" alt="Project Zeta cover image" />
+        <div class="portfolio-overlay">Project Zeta</div>
+      </div>
+    </div>
+  </section>
+</main>
 
-  <footer>
-    <p>© 2025 Echo Vale — crafted with creativity & coffee</p>
-  </footer>
+<!-- Lightbox for project gallery -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Project image gallery">
+  <button class="close-btn" aria-label="Close gallery">&times;</button>
+  <button class="nav-btn prev-btn" aria-label="Previous image">&#10094;</button>
+  <img src="" alt="Project image" />
+  <button class="nav-btn next-btn" aria-label="Next image">&#10095;</button>
+</div>
+
+<script>
+  // Dropdown accessibility: toggle aria-expanded on hover/focus
+  const dropdowns = document.querySelectorAll('nav .dropdown');
+  dropdowns.forEach(dropdown => {
+    dropdown.addEventListener('mouseenter', () => {
+      dropdown.querySelector('.dropbtn').setAttribute('aria-expanded', 'true');
+    });
+    dropdown.addEventListener('mouseleave', () => {
+      dropdown.querySelector('.dropbtn').setAttribute('aria-expanded', 'false');
+    });
+    // Keyboard accessibility
+    dropdown.querySelector('.dropbtn').addEventListener('focus', () => {
+      dropdown.querySelector('.dropbtn').setAttribute('aria-expanded', 'true');
+    });
+    dropdown.querySelector('.dropbtn').addEventListener('blur', () => {
+      dropdown.querySelector('.dropbtn').setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Lightbox gallery logic
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox.querySelector('img');
+  const closeBtn = lightbox.querySelector('.close-btn');
+  const prevBtn = lightbox.querySelector('.prev-btn');
+  const nextBtn = lightbox.querySelector('.next-btn');
+
+  let currentImages = [];
+  let currentIndex = 0;
+
+  function openLightbox(images, index) {
+    currentImages = images;
+    currentIndex = index;
+    lightboxImg.src = currentImages[currentIndex];
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent background scroll
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    lightboxImg.src = '';
+    document.body.style.overflow = '';
+  }
+
+  function showNext() {
+    currentIndex = (currentIndex + 1) % currentImages.length;
+    lightboxImg.src = currentImages[currentIndex];
+  }
+
+  function showPrev() {
+    currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+    lightboxImg.src = currentImages[currentIndex];
+  }
+
+  // Click portfolio items to open lightbox
+  document.querySelectorAll('.portfolio-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const images = item.dataset.images.split(',');
+      openLightbox(images, 0);
+    });
+    // Keyboard accessibility: open on Enter key
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const images = item.dataset.images.split(',');
+        openLightbox(images, 0);
+      }
+    });
+  });
+
+  closeBtn.addEventListener('click', closeLightbox);
+  nextBtn.addEventListener('click', showNext);
+  prevBtn.addEventListener('click', showPrev);
+
+  // Close lightbox on outside click or Escape key
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) {
+      closeLightbox();
+    }
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+      closeLightbox();
+    }
+    if (e.key === 'ArrowRight' && lightbox.classList.contains('active')) {
+      showNext();
+    }
+    if (e.key === 'ArrowLeft' && lightbox.classList.contains('active')) {
+      showPrev();
+    }
+  });
+</script>
+
 </body>
 </html>
-
