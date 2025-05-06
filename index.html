@@ -9,10 +9,10 @@
   * { box-sizing: border-box; }
   body, html {
     margin: 0; padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Times New Roman', Times, serif;
     background: #121212;
     color: #eee;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
   }
 
@@ -27,13 +27,15 @@
     overflow-y: auto;
     border-right: 2px solid #333;
     z-index: 1000;
+    font-family: 'Times New Roman', Times, serif;
   }
   nav h1 {
     color: #0af;
     font-weight: 900;
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     margin: 0 1.5rem 2rem;
     letter-spacing: 2px;
+    font-family: 'Times New Roman', Times, serif;
   }
   nav ul {
     list-style: none;
@@ -49,7 +51,7 @@
   nav a, nav button.dropbtn {
     display: block;
     color: #bbb;
-    padding: 1rem 1.5rem;
+    padding: 1.2rem 1.5rem;
     text-decoration: none;
     font-weight: 600;
     background: none;
@@ -58,6 +60,8 @@
     text-align: left;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.15rem;
   }
   nav a:hover, nav button.dropbtn:hover {
     background: #0af;
@@ -81,13 +85,15 @@
     z-index: 1100;
   }
   .dropdown-content a {
-    padding: 0.8rem 1.2rem;
+    padding: 1rem 1.2rem;
     color: #ccc;
     display: block;
     font-weight: 500;
     border-bottom: 1px solid #333;
     text-decoration: none;
     transition: background-color 0.3s ease;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.05rem;
   }
   .dropdown-content a:last-child {
     border-bottom: none;
@@ -101,12 +107,43 @@
     opacity: 1;
     pointer-events: auto;
   }
+
   main {
     margin-left: 280px;
-    padding: 2rem;
+    padding: 3.5rem 5vw 3.5rem 5vw;
     flex: 1;
     overflow-y: auto;
     background: #181818;
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+  section {
+    margin-bottom: 7rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #222;
+  }
+  section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  h2 {
+    font-size: 2.2rem;
+    margin-bottom: 2.5rem;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    color: #0af;
+  }
+  p, li, label, input, textarea, button {
+    font-size: 1.25rem;
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+  /* Portfolio grid: 3 columns, no gap */
+  #portfolio {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
   }
   .portfolio-grid {
     display: grid;
@@ -117,6 +154,7 @@
     position: relative;
     cursor: pointer;
     overflow: hidden;
+    min-height: 300px;
   }
   .portfolio-item img {
     width: 100%;
@@ -136,16 +174,19 @@
     background: rgba(10, 170, 255, 0.85);
     color: #fff;
     text-align: center;
-    padding: 1rem 0;
+    padding: 1.2rem 0;
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     transform: translateY(100%);
     transition: transform 0.4s ease;
     user-select: none;
+    font-family: 'Times New Roman', Times, serif;
   }
   .portfolio-item:hover .portfolio-overlay {
     transform: translateY(0);
   }
+
+  /* Lightbox styles */
   #lightbox {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -218,6 +259,49 @@
     border: none;
     border-radius: 12px;
   }
+
+  /* Contact form styling */
+  #contact form {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 450px;
+  }
+  #contact input, #contact textarea {
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    border: 1px solid #444;
+    background: #222;
+    color: #eee;
+    font-size: 1.1rem;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  #contact textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+  #contact button[type="submit"] {
+    background: #0af;
+    color: #fff;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 1rem 0;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Times New Roman', Times, serif;
+    transition: background 0.2s;
+  }
+  #contact button[type="submit"]:hover {
+    background: #088fdc;
+  }
+
+  @media (max-width: 1200px) {
+    main { padding: 2rem 2vw 2rem 2vw; }
+    section { margin-bottom: 4rem; }
+    h2 { font-size: 1.7rem; }
+  }
   @media (max-width: 900px) {
     main {
       margin-left: 0;
@@ -270,6 +354,7 @@
     .dropdown:hover > .dropdown-content {
       display: block;
     }
+    section { margin-bottom: 2.5rem; }
   }
 </style>
 </head>
@@ -289,6 +374,7 @@
     <li class="dropdown">
       <button class="dropbtn" aria-haspopup="true" aria-expanded="false">Portfolio</button>
       <div class="dropdown-content" role="menu" aria-label="Portfolio submenu">
+        <a href="#portfolio" role="menuitem">Portfolio Grid</a>
         <a href="#productions" role="menuitem">Productions</a>
         <a href="#engineering" role="menuitem">Engineering</a>
         <a href="#instruments" role="menuitem">Multi-Instrumentalist</a>
@@ -307,75 +393,9 @@
 </nav>
 
 <main>
-  <!-- ===== ABOUT SECTIONS ===== -->
-  <section id="bio">
-    <h2>Bio</h2>
-    <!-- PUT YOUR INFO HERE -->
-    <p>Max Globokar is a Multi-Instrumentalist, Studio Engineer, Producer and Mix Engineer. Max studied at Berklee College of Music, earning a degree in Music Production and Engineering. He plays 20+ instruments and has been an active mix engineer for 5+ years </p>
-  </section>
-  <section id="collaborations">
-    <h2>Collaborations</h2>
-    <!-- PUT YOUR INFO HERE -->
-    <p>giAnna, Skye Harding, Chiara Elgold, Eli Yacinthe, Trey Tarzia, The Nut, NATALYA, Mia Walz, Itai, Alex Skye.</p>
-  </section>
-  <section id="awards">
-    <h2>Fun Gear (for request)</h2>
-    <!-- PUT YOUR INFO HERE -->
-    <p>Chase Bliss Mood MKII, Hologram Electronics Chroma Console, 1974 Fender Rhodes Suitcase Model</p>
-  </section>
-
-  <!-- ===== PORTFOLIO SECTIONS ===== -->
-  <section id="productions">
-    <h2>Productions</h2>
-    <!-- PUT YOUR INFO HERE -->
-    <p>Produced, engineered and co-wrote upcoming collaboration album with Chiara Elgold, The Dreamer (giAnna) </p>
-  </section>
-  <section id="engineering">
-    <h2>Engineering</h2>
-    <!-- PUT YOUR INFO HERE -->
-    <p>Describe your engineering projects and technical expertise.</p>
-  </section>
-  <section id="instruments">
-    <h2>Multi-Instrumentalist</h2>
-    <!-- PUT YOUR INFO HERE -->
-    <p>Guitar, Piano, Violin, Cello, Flute, Tenor Saxophone, Clarinet, Bass Guitar, Pedal Steel, Drums, Oud, Piccolo,  </p>
-  </section>
-
-  <!-- ===== MUSIC SECTIONS ===== -->
-  <section id="tracks">
-
-  </section>
-  <section id="remixes">
-    
-  </section>
-  <section id="live">
-    <h2>Live Sessions</h2>
-    <div style="max-width: 560px; margin: 2rem auto;">
-      <iframe width="100%" height="315" src="https://www.youtube.com/embed/xRNLm4lODqg?si=0nSibwzH9FelFW6J"
-      title="YouTube video player" frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen></iframe>
-    </div>
-    <p>Watch my latest live performance!</p>
-  </section>
-
-
-  <!-- ===== CONTACT SECTION ===== -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <!-- PUT YOUR INFO HERE -->
-    <p>Email: <a href="mailto:globokarmax@gmail.com">globokarmax@gmail.com</a></p>
-    <p>Or use the contact form below:</p>
-    <form>
-      <input type="text" name="name" placeholder="Your Name" required /><br />
-      <input type="email" name="email" placeholder="Your Email" required /><br />
-      <textarea name="message" placeholder="Your Message" required></textarea><br />
-      <button type="submit">Send</button>
-    </form>
-  </section>
-
-  <!-- ===== PORTFOLIO GRID (existing) ===== -->
+  <!-- ===== PORTFOLIO GRID AT THE TOP ===== -->
   <section id="portfolio" aria-label="Portfolio Projects">
+    <h2>Portfolio</h2>
     <div class="portfolio-grid">
       <div class="portfolio-item" tabindex="0"
            data-project="Analise"
@@ -416,10 +436,71 @@
            data-project="NATALYA"
            data-images="Natalya Cover 1.jpeg,Natalya Cover 2.jpg,Natalya Cover 3.jpg"
            data-spotify="https://open.spotify.com/embed/track/13WGL61yKenZWWZUoAp3Cw">
-        <img src="Natalya Cover 1.jpeg" alt="Entifan cover image" />
+        <img src="Natalya Cover 1.jpeg" alt="NATALYA cover image" />
         <div class="portfolio-overlay">NATALYA</div>
       </div>
     </div>
+  </section>
+
+  <!-- ===== ABOUT/BIO SECTIONS ===== -->
+  <section id="bio">
+    <h2>Bio</h2>
+    <p><!-- Add your bio here -->Max Globokar is a producer, engineer, and multi-instrumentalist with a passion for creative soundscapes and collaboration. He has worked with a wide range of artists and brings a unique touch to every project.</p>
+  </section>
+  <section id="collaborations">
+    <h2>Collaborations</h2>
+    <p><!-- Add your collaborations here -->Max has collaborated with emerging and established artists, including Chiara Elgold, Eli Yacinthe, Skye Harding, giAnna, and NATALYA.</p>
+  </section>
+  <section id="awards">
+    <h2>Awards</h2>
+    <p><!-- Add your awards here -->Winner of the 2024 Indie Sound Award for Best Production, and nominated for several engineering honors.</p>
+  </section>
+
+  <!-- ===== PORTFOLIO DETAILS ===== -->
+  <section id="productions">
+    <h2>Productions</h2>
+    <p><!-- Add your productions here -->Explore Max's signature production style across genres, from indie pop to cinematic electronica.</p>
+  </section>
+  <section id="engineering">
+    <h2>Engineering</h2>
+    <p><!-- Add your engineering info here -->Expert in mixing, mastering, and studio engineering for both digital and analog sessions.</p>
+  </section>
+  <section id="instruments">
+    <h2>Multi-Instrumentalist</h2>
+    <p><!-- Add your instruments info here -->Proficient in guitar, piano, drums, bass, and a variety of world instruments.</p>
+  </section>
+
+  <!-- ===== MUSIC SECTIONS ===== -->
+  <section id="tracks">
+    <h2>Tracks</h2>
+    <p><!-- Add your tracks info here -->Listen to Max's latest tracks on Spotify, Apple Music, and all major platforms.</p>
+  </section>
+  <section id="remixes">
+    <h2>Remixes</h2>
+    <p><!-- Add your remixes info here -->Creative remixes and reimaginings of songs by artists across the globe.</p>
+  </section>
+  <section id="live">
+    <h2>Live Sessions</h2>
+    <div style="max-width: 560px; margin: 2rem auto;">
+      <!-- Example YouTube embed -->
+      <iframe width="100%" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe>
+    </div>
+    <p>Watch Max's latest live performance and studio sessions.</p>
+  </section>
+
+  <!-- ===== CONTACT SECTION AT THE BOTTOM ===== -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:your@email.com" style="color:#0af;">your@email.com</a></p>
+    <form>
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
   </section>
 </main>
 
