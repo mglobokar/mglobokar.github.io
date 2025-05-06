@@ -5,10 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Artist Portfolio - Producer | Engineer | Multi-Instrumentalist</title>
 <style>
-  /* Reset and base */
-  * {
-    box-sizing: border-box;
-  }
+  html { scroll-behavior: smooth; }
+  * { box-sizing: border-box; }
   body, html {
     margin: 0; padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -18,7 +16,6 @@
     display: flex;
   }
 
-  /* Sidebar navigation */
   nav {
     width: 280px;
     background: #1e1e1e;
@@ -66,12 +63,9 @@
     background: #0af;
     color: #fff;
   }
-
-  /* Dropdown container */
   .dropdown {
     position: relative;
   }
-  /* Dropdown content hidden by default */
   .dropdown-content {
     display: none;
     position: absolute;
@@ -86,7 +80,6 @@
     transition: opacity 0.35s ease;
     z-index: 1100;
   }
-  /* Dropdown links */
   .dropdown-content a {
     padding: 0.8rem 1.2rem;
     color: #ccc;
@@ -103,14 +96,11 @@
     background-color: #0af;
     color: #fff;
   }
-  /* Show dropdown on hover with fade-in */
   .dropdown:hover > .dropdown-content {
     display: block;
     opacity: 1;
     pointer-events: auto;
   }
-
-  /* Main content area */
   main {
     margin-left: 280px;
     padding: 2rem;
@@ -118,8 +108,6 @@
     overflow-y: auto;
     background: #181818;
   }
-
-  /* Portfolio grid: 3 columns, no gap */
   .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -137,11 +125,9 @@
     display: block;
     transition: transform 0.5s ease;
   }
-  /* Zoom image on hover */
   .portfolio-item:hover img {
     transform: scale(1.1);
   }
-  /* Overlay with project name */
   .portfolio-overlay {
     position: absolute;
     bottom: 0;
@@ -160,8 +146,6 @@
   .portfolio-item:hover .portfolio-overlay {
     transform: translateY(0);
   }
-
-  /* Lightbox styles */
   #lightbox {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -219,13 +203,11 @@
   #lightbox .next-btn {
     right: 2rem;
   }
-
-  /* Spotify embed container */
   #spotify-player {
     margin-top: 1.5rem;
     width: 90vw;
     max-width: 500px;
-    height: 152px; /* Spotify default height */
+    height: 152px;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(10, 170, 255, 0.3);
     overflow: hidden;
@@ -236,8 +218,6 @@
     border: none;
     border-radius: 12px;
   }
-
-  /* Responsive */
   @media (max-width: 900px) {
     main {
       margin-left: 0;
@@ -327,6 +307,74 @@
 </nav>
 
 <main>
+  <!-- ===== ABOUT SECTIONS ===== -->
+  <section id="bio">
+    <h2>Bio</h2>
+    <!-- PUT YOUR INFO HERE -->
+    <p>Max Globokar is a Multi-Instrumentalist, Studio Engineer, Producer and Mix Engineer. Max studied at Berklee College of Music, earning a degree in Music Production and Engineering. He plays 20+ instruments and has been an active mix engineer for 5+ years </p>
+  </section>
+  <section id="collaborations">
+    <h2>Collaborations</h2>
+    <!-- PUT YOUR INFO HERE -->
+    <p>giAnna, Skye Harding, Chiara Elgold, Eli Yacinthe, Trey Tarzia, The Nut, NATALYA, Mia Walz, Itai, Alex Skye.</p>
+  </section>
+  <section id="awards">
+    <h2>Fun Gear (for request)</h2>
+    <!-- PUT YOUR INFO HERE -->
+    <p>Chase Bliss Mood MKII, Hologram Electronics Chroma Console, 1974 Fender Rhodes Suitcase Model</p>
+  </section>
+
+  <!-- ===== PORTFOLIO SECTIONS ===== -->
+  <section id="productions">
+    <h2>Productions</h2>
+    <!-- PUT YOUR INFO HERE -->
+    <p>Produced, engineered and co-wrote upcoming collaboration album with Chiara Elgold, The Dreamer (giAnna) </p>
+  </section>
+  <section id="engineering">
+    <h2>Engineering</h2>
+    <!-- PUT YOUR INFO HERE -->
+    <p>Describe your engineering projects and technical expertise.</p>
+  </section>
+  <section id="instruments">
+    <h2>Multi-Instrumentalist</h2>
+    <!-- PUT YOUR INFO HERE -->
+    <p>Guitar, Piano, Violin, Cello, Flute, Tenor Saxophone, Clarinet, Bass Guitar, Pedal Steel, Drums, Oud, Piccolo,  </p>
+  </section>
+
+  <!-- ===== MUSIC SECTIONS ===== -->
+  <section id="tracks">
+
+  </section>
+  <section id="remixes">
+    
+  </section>
+  <section id="live">
+    <h2>Live Sessions</h2>
+    <div style="max-width: 560px; margin: 2rem auto;">
+      <iframe width="100%" height="315" src="https://www.youtube.com/embed/xRNLm4lODqg?si=0nSibwzH9FelFW6J"
+      title="YouTube video player" frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen></iframe>
+    </div>
+    <p>Watch my latest live performance!</p>
+  </section>
+
+
+  <!-- ===== CONTACT SECTION ===== -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <!-- PUT YOUR INFO HERE -->
+    <p>Email: <a href="mailto:globokarmax@gmail.com">globokarmax@gmail.com</a></p>
+    <p>Or use the contact form below:</p>
+    <form>
+      <input type="text" name="name" placeholder="Your Name" required /><br />
+      <input type="email" name="email" placeholder="Your Email" required /><br />
+      <textarea name="message" placeholder="Your Message" required></textarea><br />
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <!-- ===== PORTFOLIO GRID (existing) ===== -->
   <section id="portfolio" aria-label="Portfolio Projects">
     <div class="portfolio-grid">
       <div class="portfolio-item" tabindex="0"
@@ -366,7 +414,7 @@
       </div>
       <div class="portfolio-item" tabindex="0"
            data-project="NATALYA"
-           data-images="Natalya Cover 1.jpeg,Natalya Cover 2.jpg, Natalya Cover 3.jpg"
+           data-images="Natalya Cover 1.jpeg,Natalya Cover 2.jpg,Natalya Cover 3.jpg"
            data-spotify="https://open.spotify.com/embed/track/13WGL61yKenZWWZUoAp3Cw">
         <img src="Natalya Cover 1.jpeg" alt="Entifan cover image" />
         <div class="portfolio-overlay">NATALYA</div>
@@ -428,7 +476,7 @@
               title="Spotify Player"></iframe>
     `;
     lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Prevent background scroll
+    document.body.style.overflow = 'hidden';
   }
 
   function closeLightbox() {
@@ -448,14 +496,12 @@
     lightboxImg.src = currentImages[currentIndex];
   }
 
-  // Click portfolio items to open lightbox with Spotify embed
   document.querySelectorAll('.portfolio-item').forEach(item => {
     item.addEventListener('click', () => {
       const images = item.dataset.images.split(',');
       const spotifyUrl = item.dataset.spotify;
       openLightbox(images, 0, spotifyUrl);
     });
-    // Keyboard accessibility: open on Enter or Space key
     item.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -470,7 +516,6 @@
   nextBtn.addEventListener('click', showNext);
   prevBtn.addEventListener('click', showPrev);
 
-  // Close lightbox on outside click or Escape key
   lightbox.addEventListener('click', e => {
     if (e.target === lightbox) {
       closeLightbox();
