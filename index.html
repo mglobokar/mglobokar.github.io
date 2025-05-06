@@ -167,6 +167,7 @@
     top: 0; left: 0; right: 0; bottom: 0;
     background: rgba(0,0,0,0.9);
     display: none;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 2000;
@@ -177,7 +178,7 @@
   }
   #lightbox img {
     max-width: 90vw;
-    max-height: 90vh;
+    max-height: 60vh;
     border-radius: 8px;
     box-shadow: 0 0 40px #0af;
   }
@@ -190,6 +191,8 @@
     cursor: pointer;
     user-select: none;
     font-weight: 900;
+    background: transparent;
+    border: none;
   }
   #lightbox .nav-btn {
     position: absolute;
@@ -204,6 +207,7 @@
     background: rgba(20,20,20,0.6);
     border-radius: 50%;
     transition: background-color 0.3s ease;
+    border: none;
   }
   #lightbox .nav-btn:hover {
     background: #0af;
@@ -214,6 +218,23 @@
   }
   #lightbox .next-btn {
     right: 2rem;
+  }
+
+  /* Spotify embed container */
+  #spotify-player {
+    margin-top: 1.5rem;
+    width: 90vw;
+    max-width: 500px;
+    height: 152px; /* Spotify default height */
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(10, 170, 255, 0.3);
+    overflow: hidden;
+  }
+  #spotify-player iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 12px;
   }
 
   /* Responsive */
@@ -308,27 +329,45 @@
 <main>
   <section id="portfolio" aria-label="Portfolio Projects">
     <div class="portfolio-grid">
-      <div class="portfolio-item" tabindex="0" data-project="Project Alpha" data-images="https://picsum.photos/id/1011/800/600,https://picsum.photos/id/1012/800/600,https://picsum.photos/id/1013/800/600">
-        <img src="https://picsum.photos/id/1011/400/300" alt="Project Alpha cover image" />
-        <div class="portfolio-overlay">Project Alpha</div>
+      <div class="portfolio-item" tabindex="0"
+           data-project="Analise"
+           data-images="https://picsum.photos/id/1011/800/600,https://picsum.photos/id/1012/800/600,https://picsum.photos/id/1013/800/600"
+           data-spotify="<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/37GmTzMhfK5CZwXh1gxtSC?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>">
+        <img src="https://picsum.photos/id/1011/400/300" alt="Analise cover image" />
+        <div class="portfolio-overlay">Analise</div>
       </div>
-      <div class="portfolio-item" tabindex="0" data-project="Project Beta" data-images="https://picsum.photos/id/1021/800/600,https://picsum.photos/id/1022/800/600,https://picsum.photos/id/1023/800/600">
+      <div class="portfolio-item" tabindex="0"
+           data-project="Project Beta"
+           data-images="https://picsum.photos/id/1021/800/600,https://picsum.photos/id/1022/800/600,https://picsum.photos/id/1023/800/600"
+           data-spotify="https://open.spotify.com/embed/track/3dWKj3jvQF5IHEoMi3Q0YH">
         <img src="https://picsum.photos/id/1021/400/300" alt="Project Beta cover image" />
         <div class="portfolio-overlay">Project Beta</div>
       </div>
-      <div class="portfolio-item" tabindex="0" data-project="Project Gamma" data-images="https://picsum.photos/id/1031/800/600,https://picsum.photos/id/1032/800/600,https://picsum.photos/id/1033/800/600">
+      <div class="portfolio-item" tabindex="0"
+           data-project="Project Gamma"
+           data-images="https://picsum.photos/id/1031/800/600,https://picsum.photos/id/1032/800/600,https://picsum.photos/id/1033/800/600"
+           data-spotify="https://open.spotify.com/embed/track/7GhIk7Il098yCjg4BQjzvb">
         <img src="https://picsum.photos/id/1031/400/300" alt="Project Gamma cover image" />
         <div class="portfolio-overlay">Project Gamma</div>
       </div>
-      <div class="portfolio-item" tabindex="0" data-project="Project Delta" data-images="https://picsum.photos/id/1041/800/600,https://picsum.photos/id/1042/800/600,https://picsum.photos/id/1043/800/600">
+      <div class="portfolio-item" tabindex="0"
+           data-project="Project Delta"
+           data-images="https://picsum.photos/id/1041/800/600,https://picsum.photos/id/1042/800/600,https://picsum.photos/id/1043/800/600"
+           data-spotify="https://open.spotify.com/embed/track/4uLU6hMCjMI75M1A2tKUQC">
         <img src="https://picsum.photos/id/1041/400/300" alt="Project Delta cover image" />
         <div class="portfolio-overlay">Project Delta</div>
       </div>
-      <div class="portfolio-item" tabindex="0" data-project="Project Epsilon" data-images="https://picsum.photos/id/1051/800/600,https://picsum.photos/id/1052/800/600,https://picsum.photos/id/1053/800/600">
+      <div class="portfolio-item" tabindex="0"
+           data-project="Project Epsilon"
+           data-images="https://picsum.photos/id/1051/800/600,https://picsum.photos/id/1052/800/600,https://picsum.photos/id/1053/800/600"
+           data-spotify="https://open.spotify.com/embed/track/0VjIjW4GlUZAMYd2vXMi3b">
         <img src="https://picsum.photos/id/1051/400/300" alt="Project Epsilon cover image" />
         <div class="portfolio-overlay">Project Epsilon</div>
       </div>
-      <div class="portfolio-item" tabindex="0" data-project="Project Zeta" data-images="https://picsum.photos/id/1061/800/600,https://picsum.photos/id/1062/800/600,https://picsum.photos/id/1063/800/600">
+      <div class="portfolio-item" tabindex="0"
+           data-project="Project Zeta"
+           data-images="https://picsum.photos/id/1061/800/600,https://picsum.photos/id/1062/800/600,https://picsum.photos/id/1063/800/600"
+           data-spotify="https://open.spotify.com/embed/track/6habFhsOp2NvshLv26DqMb">
         <img src="https://picsum.photos/id/1061/400/300" alt="Project Zeta cover image" />
         <div class="portfolio-overlay">Project Zeta</div>
       </div>
@@ -341,6 +380,7 @@
   <button class="close-btn" aria-label="Close gallery">&times;</button>
   <button class="nav-btn prev-btn" aria-label="Previous image">&#10094;</button>
   <img src="" alt="Project image" />
+  <div id="spotify-player" aria-label="Spotify music player"></div>
   <button class="nav-btn next-btn" aria-label="Next image">&#10095;</button>
 </div>
 
@@ -354,7 +394,6 @@
     dropdown.addEventListener('mouseleave', () => {
       dropdown.querySelector('.dropbtn').setAttribute('aria-expanded', 'false');
     });
-    // Keyboard accessibility
     dropdown.querySelector('.dropbtn').addEventListener('focus', () => {
       dropdown.querySelector('.dropbtn').setAttribute('aria-expanded', 'true');
     });
@@ -366,17 +405,28 @@
   // Lightbox gallery logic
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = lightbox.querySelector('img');
+  const spotifyPlayer = document.getElementById('spotify-player');
   const closeBtn = lightbox.querySelector('.close-btn');
   const prevBtn = lightbox.querySelector('.prev-btn');
   const nextBtn = lightbox.querySelector('.next-btn');
 
   let currentImages = [];
   let currentIndex = 0;
+  let currentSpotifyUrl = '';
 
-  function openLightbox(images, index) {
+  function openLightbox(images, index, spotifyUrl) {
     currentImages = images;
     currentIndex = index;
+    currentSpotifyUrl = spotifyUrl;
     lightboxImg.src = currentImages[currentIndex];
+    spotifyPlayer.innerHTML = `
+      <iframe src="${currentSpotifyUrl}" 
+              width="100%" height="152" 
+              frameborder="0" 
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+              loading="lazy" 
+              title="Spotify Player"></iframe>
+    `;
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden'; // Prevent background scroll
   }
@@ -384,6 +434,7 @@
   function closeLightbox() {
     lightbox.classList.remove('active');
     lightboxImg.src = '';
+    spotifyPlayer.innerHTML = '';
     document.body.style.overflow = '';
   }
 
@@ -397,18 +448,20 @@
     lightboxImg.src = currentImages[currentIndex];
   }
 
-  // Click portfolio items to open lightbox
+  // Click portfolio items to open lightbox with Spotify embed
   document.querySelectorAll('.portfolio-item').forEach(item => {
     item.addEventListener('click', () => {
       const images = item.dataset.images.split(',');
-      openLightbox(images, 0);
+      const spotifyUrl = item.dataset.spotify;
+      openLightbox(images, 0, spotifyUrl);
     });
-    // Keyboard accessibility: open on Enter key
+    // Keyboard accessibility: open on Enter or Space key
     item.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         const images = item.dataset.images.split(',');
-        openLightbox(images, 0);
+        const spotifyUrl = item.dataset.spotify;
+        openLightbox(images, 0, spotifyUrl);
       }
     });
   });
