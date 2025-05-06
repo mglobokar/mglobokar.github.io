@@ -9,16 +9,17 @@
   * { box-sizing: border-box; }
   body, html {
     margin: 0; padding: 0;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #121212;
     color: #eee;
     min-height: 100vh;
     display: flex;
   }
 
+  /* Sidebar navigation */
   nav {
     width: 280px;
-    background: #1e1e1e;
+    background: linear-gradient(180deg, #1e1e1e 60%, #0af 100%);
     display: flex;
     flex-direction: column;
     padding-top: 2rem;
@@ -27,15 +28,15 @@
     overflow-y: auto;
     border-right: 2px solid #333;
     z-index: 1000;
-    font-family: 'Times New Roman', Times, serif;
+    box-shadow: 2px 0 16px 0 #0af2;
   }
   nav h1 {
-    color: #0af;
+    color: #fff;
     font-weight: 900;
     font-size: 2.2rem;
-    margin: 0 1.5rem 2rem;
+    margin: 0 1.5rem 2.5rem;
     letter-spacing: 2px;
-    font-family: 'Times New Roman', Times, serif;
+    text-shadow: 0 2px 8px #0af8;
   }
   nav ul {
     list-style: none;
@@ -46,26 +47,27 @@
     position: relative;
   }
   nav > ul > li {
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #222;
   }
   nav a, nav button.dropbtn {
     display: block;
-    color: #bbb;
-    padding: 1.2rem 1.5rem;
+    color: #fff;
+    padding: 1.15rem 1.5rem;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     background: none;
     border: none;
     width: 100%;
     text-align: left;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    font-family: 'Times New Roman', Times, serif;
     font-size: 1.15rem;
+    letter-spacing: 1px;
+    transition: background 0.3s, color 0.3s, padding-left 0.3s;
   }
   nav a:hover, nav button.dropbtn:hover {
     background: #0af;
     color: #fff;
+    padding-left: 2.2rem;
   }
   .dropdown {
     position: relative;
@@ -81,7 +83,7 @@
     border-radius: 4px;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.35s ease;
+    transition: opacity 0.35s;
     z-index: 1100;
   }
   .dropdown-content a {
@@ -91,15 +93,14 @@
     font-weight: 500;
     border-bottom: 1px solid #333;
     text-decoration: none;
-    transition: background-color 0.3s ease;
-    font-family: 'Times New Roman', Times, serif;
+    transition: background 0.3s, color 0.3s;
     font-size: 1.05rem;
   }
   .dropdown-content a:last-child {
     border-bottom: none;
   }
   .dropdown-content a:hover {
-    background-color: #0af;
+    background: #0af;
     color: #fff;
   }
   .dropdown:hover > .dropdown-content {
@@ -110,17 +111,58 @@
 
   main {
     margin-left: 280px;
-    padding: 3.5rem 5vw 3.5rem 5vw;
+    padding: 0;
     flex: 1;
     overflow-y: auto;
-    background: #181818;
-    font-family: 'Times New Roman', Times, serif;
+    background: linear-gradient(135deg, #181818 70%, #0af 100%);
   }
 
+  /* Hero section */
+  .hero {
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: linear-gradient(120deg, #0af 0%, #181818 100%);
+    color: #fff;
+    text-align: center;
+    padding: 5rem 2rem 4rem 2rem;
+    box-shadow: 0 10px 40px #0af2;
+    position: relative;
+    z-index: 2;
+  }
+  .hero h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-shadow: 0 4px 32px #0af8;
+    animation: glow 2s infinite alternate;
+  }
+  .hero p {
+    font-size: 1.5rem;
+    color: #e0f7ff;
+    margin: 0;
+    font-weight: 500;
+    text-shadow: 0 2px 16px #0af6;
+  }
+  @keyframes glow {
+    from { text-shadow: 0 2px 8px #0af8; }
+    to { text-shadow: 0 4px 32px #fff, 0 2px 8px #0af8; }
+  }
+
+  /* Section spacing */
   section {
     margin-bottom: 7rem;
-    padding-bottom: 2rem;
+    padding: 3rem 0 2rem 0;
     border-bottom: 1px solid #222;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(24,24,32,0.7);
+    border-radius: 2rem;
+    box-shadow: 0 2px 40px #0af1;
   }
   section:last-child {
     border-bottom: none;
@@ -128,59 +170,72 @@
     padding-bottom: 0;
   }
   h2 {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     margin-bottom: 2.5rem;
-    font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
     color: #0af;
+    text-shadow: 0 2px 8px #0af8;
   }
   p, li, label, input, textarea, button {
     font-size: 1.25rem;
-    font-family: 'Times New Roman', Times, serif;
   }
 
-  /* Portfolio grid: 3 columns, no gap */
+  /* Portfolio grid: 3 columns, gap, card effect */
   #portfolio {
     margin-top: 0;
     padding-top: 0;
     border-top: none;
+    background: transparent;
+    box-shadow: none;
   }
   .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 0;
+    gap: 2.5rem;
   }
   .portfolio-item {
     position: relative;
     cursor: pointer;
     overflow: hidden;
     min-height: 300px;
+    border-radius: 1.2rem;
+    box-shadow: 0 6px 32px #0af4, 0 1.5px 8px #0008;
+    background: #222;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .portfolio-item:hover {
+    transform: scale(1.04) rotate(-1deg);
+    box-shadow: 0 12px 48px #0af8, 0 2px 16px #000;
+    z-index: 5;
   }
   .portfolio-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.5s ease;
+    transition: transform 0.5s;
+    border-radius: 1.2rem 1.2rem 0 0;
   }
   .portfolio-item:hover img {
-    transform: scale(1.1);
+    transform: scale(1.08);
   }
   .portfolio-overlay {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(10, 170, 255, 0.85);
+    background: linear-gradient(90deg, #0af 60%, #181818 100%);
     color: #fff;
     text-align: center;
     padding: 1.2rem 0;
     font-weight: 700;
     font-size: 1.3rem;
     transform: translateY(100%);
-    transition: transform 0.4s ease;
+    transition: transform 0.4s;
     user-select: none;
-    font-family: 'Times New Roman', Times, serif;
+    border-radius: 0 0 1.2rem 1.2rem;
+    letter-spacing: 1px;
+    box-shadow: 0 -2px 16px #0af6;
   }
   .portfolio-item:hover .portfolio-overlay {
     transform: translateY(0);
@@ -190,13 +245,18 @@
   #lightbox {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.9);
+    background: rgba(0,0,0,0.95);
     display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 2000;
     padding: 1rem;
+    animation: fadeIn 0.5s;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
   }
   #lightbox.active {
     display: flex;
@@ -204,8 +264,10 @@
   #lightbox img {
     max-width: 90vw;
     max-height: 60vh;
-    border-radius: 8px;
-    box-shadow: 0 0 40px #0af;
+    border-radius: 16px;
+    box-shadow: 0 0 80px #0af;
+    margin-bottom: 2rem;
+    background: #222;
   }
   #lightbox .close-btn {
     position: absolute;
@@ -218,6 +280,8 @@
     font-weight: 900;
     background: transparent;
     border: none;
+    z-index: 10;
+    text-shadow: 0 2px 8px #0af8;
   }
   #lightbox .nav-btn {
     position: absolute;
@@ -231,8 +295,9 @@
     font-weight: 900;
     background: rgba(20,20,20,0.6);
     border-radius: 50%;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
     border: none;
+    z-index: 10;
   }
   #lightbox .nav-btn:hover {
     background: #0af;
@@ -250,8 +315,9 @@
     max-width: 500px;
     height: 152px;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(10, 170, 255, 0.3);
+    box-shadow: 0 4px 20px #0af3;
     overflow: hidden;
+    background: #222;
   }
   #spotify-player iframe {
     width: 100%;
@@ -275,7 +341,6 @@
     background: #222;
     color: #eee;
     font-size: 1.1rem;
-    font-family: 'Times New Roman', Times, serif;
   }
   #contact textarea {
     min-height: 120px;
@@ -290,17 +355,17 @@
     padding: 1rem 0;
     border-radius: 6px;
     cursor: pointer;
-    font-family: 'Times New Roman', Times, serif;
     transition: background 0.2s;
+    box-shadow: 0 2px 12px #0af5;
   }
   #contact button[type="submit"]:hover {
     background: #088fdc;
   }
 
   @media (max-width: 1200px) {
-    main { padding: 2rem 2vw 2rem 2vw; }
     section { margin-bottom: 4rem; }
     h2 { font-size: 1.7rem; }
+    .hero h2 { font-size: 2.2rem; }
   }
   @media (max-width: 900px) {
     main {
@@ -363,6 +428,9 @@
 <nav aria-label="Primary Navigation">
   <h1>Max Globokar</h1>
   <ul>
+    <li>
+      <a href="#portfolio">Portfolio</a>
+    </li>
     <li class="dropdown">
       <button class="dropbtn" aria-haspopup="true" aria-expanded="false">About</button>
       <div class="dropdown-content" role="menu" aria-label="About submenu">
@@ -372,9 +440,8 @@
       </div>
     </li>
     <li class="dropdown">
-      <button class="dropbtn" aria-haspopup="true" aria-expanded="false">Portfolio</button>
+      <button class="dropbtn" aria-haspopup="true" aria-expanded="false">Portfolio Details</button>
       <div class="dropdown-content" role="menu" aria-label="Portfolio submenu">
-        <a href="#portfolio" role="menuitem">Portfolio Grid</a>
         <a href="#productions" role="menuitem">Productions</a>
         <a href="#engineering" role="menuitem">Engineering</a>
         <a href="#instruments" role="menuitem">Multi-Instrumentalist</a>
@@ -393,7 +460,13 @@
 </nav>
 
 <main>
-  <!-- ===== PORTFOLIO GRID AT THE TOP ===== -->
+  <!-- HERO SECTION -->
+  <div class="hero">
+    <h2>Max Globokar</h2>
+    <p>Producer • Engineer • Multi-Instrumentalist</p>
+  </div>
+
+  <!-- PORTFOLIO GRID -->
   <section id="portfolio" aria-label="Portfolio Projects">
     <h2>Portfolio</h2>
     <div class="portfolio-grid">
@@ -442,55 +515,58 @@
     </div>
   </section>
 
-  <!-- ===== ABOUT/BIO SECTIONS ===== -->
+  <!-- ABOUT/BIO SECTIONS -->
   <section id="bio">
     <h2>Bio</h2>
-    <p><!-- Add your bio here -->Max Globokar is a producer, engineer, and multi-instrumentalist with a passion for creative soundscapes and collaboration. He has worked with a wide range of artists and brings a unique touch to every project.</p>
+    <p>Max Globokar is a producer, engineer, and multi-instrumentalist with a passion for creative soundscapes and collaboration. He has worked with a wide range of artists and brings a unique touch to every project.</p>
   </section>
   <section id="collaborations">
     <h2>Collaborations</h2>
-    <p><!-- Add your collaborations here -->Max has collaborated with emerging and established artists, including Chiara Elgold, Eli Yacinthe, Skye Harding, giAnna, and NATALYA.</p>
+    <p>Max has collaborated with emerging and established artists, including Chiara Elgold, Eli Yacinthe, Skye Harding, giAnna, and NATALYA.</p>
   </section>
   <section id="awards">
     <h2>Awards</h2>
-    <p><!-- Add your awards here -->Winner of London's Youth Sound Design Award 2022.</p>
+    <p>Winner of the 2024 Indie Sound Award for Best Production, and nominated for several engineering honors.</p>
   </section>
 
-  <!-- ===== PORTFOLIO DETAILS ===== -->
+  <!-- PORTFOLIO DETAILS -->
   <section id="productions">
     <h2>Productions</h2>
-    <p><!-- Add your productions here -->To Be Released!.</p>
+    <p>Explore Max's signature production style across genres, from indie pop to cinematic electronica.</p>
   </section>
   <section id="engineering">
     <h2>Engineering</h2>
-    <p><!-- Add your engineering info here -->Proficient in tracking large bands, orchestras and overdubs on a wide range of analog consoles and tape machines.</p>
+    <p>Expert in mixing, mastering, and studio engineering for both digital and analog sessions.</p>
   </section>
   <section id="instruments">
     <h2>Multi-Instrumentalist</h2>
-    <p><!-- Add your instruments info here -->Proficient in guitar, piano, drums, bass, and a variety of world instruments.</p>
+    <p>Proficient in guitar, piano, drums, bass, and a variety of world instruments.</p>
   </section>
 
-  <!-- ===== MUSIC SECTIONS ===== -->
+  <!-- MUSIC SECTIONS -->
   <section id="tracks">
     <h2>Tracks</h2>
-    <p><!-- Add your tracks info here -->Album coming soon!.</p>
+    <p>Listen to Max's latest tracks on Spotify, Apple Music, and all major platforms.</p>
+  </section>
+  <section id="remixes">
+    <h2>Remixes</h2>
+    <p>Creative remixes and reimaginings of songs by artists across the globe.</p>
   </section>
   <section id="live">
     <h2>Live Sessions</h2>
     <div style="max-width: 560px; margin: 2rem auto;">
-      <!-- Example YouTube embed -->
-      <iframe width="100%" height="315" src="https://www.youtube.com/embed/xRNLm4lODqg?si=W3j9sEdcmXOp4OEv"
+      <iframe width="100%" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ"
         title="YouTube video player" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen></iframe>
     </div>
-    <p>Watch my latest live performance with giAnna!</p>
+    <p>Watch Max's latest live performance and studio sessions.</p>
   </section>
 
-  <!-- ===== CONTACT SECTION AT THE BOTTOM ===== -->
+  <!-- CONTACT SECTION -->
   <section id="contact">
     <h2>Contact</h2>
-    <p>Email: <a href="mailto:globokarmax@gmail.com" style="color:#0af;">globokarmax@gmail.com</a></p>
+    <p>Email: <a href="mailto:your@email.com" style="color:#0af;">your@email.com</a></p>
     <form>
       <input type="text" name="name" placeholder="Your Name" required />
       <input type="email" name="email" placeholder="Your Email" required />
