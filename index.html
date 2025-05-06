@@ -1,147 +1,493 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Plunger Award</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Artist Portfolio - Producer | Engineer | Multi-Instrumentalist</title>
+<style>
+  /* Reset and base */
+  * {
+    box-sizing: border-box;
+  }
+  body, html {
+    margin: 0; padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #121212;
+    color: #eee;
+    height: 100vh;
+    display: flex;
+  }
 
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <style>
-        /* General styling */
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 0;
-            text-align: center;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-            background-color: #4B0082; /* Deep purple */
-            color: white; /* White text */
-        }
+  /* Sidebar navigation */
+  nav {
+    width: 280px;
+    background: #1e1e1e;
+    display: flex;
+    flex-direction: column;
+    padding-top: 2rem;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    border-right: 2px solid #333;
+    z-index: 1000;
+  }
+  nav h1 {
+    color: #0af;
+    font-weight: 900;
+    font-size: 1.8rem;
+    margin: 0 1.5rem 2rem;
+    letter-spacing: 2px;
+  }
+  nav ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  nav li {
+    position: relative;
+  }
+  nav > ul > li {
+    border-bottom: 1px solid #333;
+  }
+  nav a, nav button.dropbtn {
+    display: block;
+    color: #bbb;
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  nav a:hover, nav button.dropbtn:hover {
+    background: #0af;
+    color: #fff;
+  }
 
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: #333;
-            color: white;
-            padding: 10px 0;
-        }
+  /* Dropdown container */
+  .dropdown {
+    position: relative;
+  }
+  /* Dropdown content hidden by default */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    background: #222;
+    min-width: 220px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.7);
+    border-radius: 4px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+    z-index: 1100;
+  }
+  /* Dropdown links */
+  .dropdown-content a {
+    padding: 0.8rem 1.2rem;
+    color: #ccc;
+    display: block;
+    font-weight: 500;
+    border-bottom: 1px solid #333;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  .dropdown-content a:last-child {
+    border-bottom: none;
+  }
+  .dropdown-content a:hover {
+    background-color: #0af;
+    color: #fff;
+  }
+  /* Show dropdown on hover with fade-in */
+  .dropdown:hover > .dropdown-content {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+  }
 
-        .header h1, .header h2 {
-            margin: 5px 0;
-        }
+  /* Main content area */
+  main {
+    margin-left: 280px;
+    padding: 2rem;
+    flex: 1;
+    overflow-y: auto;
+    background: #181818;
+  }
 
-        .content {
-            margin-top: 100px; /* Space for fixed header */
-        }
+  /* Portfolio grid: 3 columns, no gap */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+  .portfolio-item {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .portfolio-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  /* Zoom image on hover */
+  .portfolio-item:hover img {
+    transform: scale(1.1);
+  }
+  /* Overlay with project name */
+  .portfolio-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(10, 170, 255, 0.85);
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    font-weight: 700;
+    font-size: 1.2rem;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+    user-select: none;
+  }
+  .portfolio-item:hover .portfolio-overlay {
+    transform: translateY(0);
+  }
 
-        .bio-container {
-            display: none;
-            margin-bottom: 40px; /* Space between bios */
-        }
+  /* Lightbox styles */
+  #lightbox {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.9);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    padding: 1rem;
+  }
+  #lightbox.active {
+    display: flex;
+  }
+  #lightbox img {
+    max-width: 90vw;
+    max-height: 60vh;
+    border-radius: 8px;
+    box-shadow: 0 0 40px #0af;
+  }
+  #lightbox .close-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    font-size: 2.5rem;
+    color: #0af;
+    cursor: pointer;
+    user-select: none;
+    font-weight: 900;
+    background: transparent;
+    border: none;
+  }
+  #lightbox .nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 3rem;
+    color: #0af;
+    cursor: pointer;
+    user-select: none;
+    padding: 0 1rem;
+    font-weight: 900;
+    background: rgba(20,20,20,0.6);
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+    border: none;
+  }
+  #lightbox .nav-btn:hover {
+    background: #0af;
+    color: #121212;
+  }
+  #lightbox .prev-btn {
+    left: 2rem;
+  }
+  #lightbox .next-btn {
+    right: 2rem;
+  }
 
-        .bio-container.active {
-            display: block;
-        }
+  /* Spotify embed container */
+  #spotify-player {
+    margin-top: 1.5rem;
+    width: 90vw;
+    max-width: 500px;
+    height: 152px; /* Spotify default height */
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(10, 170, 255, 0.3);
+    overflow: hidden;
+  }
+  #spotify-player iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 12px;
+  }
 
-        img {
-            width: 300px; /* Set image width to 300px */
-            height: auto; /* Maintain aspect ratio */
-            margin: 20px 0; /* Add spacing */
-            cursor: pointer;
-        }
-
-        .nav-links {
-            margin-top: 20px;
-        }
-
-        .nav-links button {
-            padding: 10px 15px;
-            margin: 5px;
-            border: none;
-            background-color: #555;
-            color: white;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .nav-links button:hover {
-            background-color: #777;
-        }
-
-        #sos-message {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 100px;
-            font-weight: bold;
-            color: red;
-        }
-
-        .comic {
-            font-family: "Comic Sans MS", cursive, sans-serif;
-        }
-    </style>
+  /* Responsive */
+  @media (max-width: 900px) {
+    main {
+      margin-left: 0;
+      padding: 1rem;
+    }
+    .portfolio-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    nav {
+      position: relative;
+      width: 100%;
+      height: auto;
+      flex-direction: row;
+      border-right: none;
+      border-bottom: 2px solid #333;
+      overflow-x: auto;
+      white-space: nowrap;
+      padding: 0.5rem 1rem;
+    }
+    nav h1 {
+      margin: 0 1rem 0 0;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      align-self: center;
+    }
+    nav ul {
+      display: flex;
+      flex-wrap: nowrap;
+      margin: 0;
+      padding: 0;
+      flex-shrink: 0;
+    }
+    nav li {
+      border: none;
+    }
+    nav a, nav button.dropbtn {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+    .dropdown-content {
+      position: static;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      background: #222;
+      box-shadow: none;
+      min-width: auto;
+      border-radius: 0;
+      display: none;
+    }
+    .dropdown:hover > .dropdown-content {
+      display: block;
+    }
+  }
+</style>
 </head>
 <body>
-    <div class="header">
-        <h1>Plunger Award</h1>
-        <h2>Band Bio</h2>
+
+<nav aria-label="Primary Navigation">
+  <h1>ArtistName</h1>
+  <ul>
+    <li class="dropdown">
+      <button class="dropbtn" aria-haspopup="true" aria-expanded="false">About</button>
+      <div class="dropdown-content" role="menu" aria-label="About submenu">
+        <a href="#bio" role="menuitem">Bio</a>
+        <a href="#collaborations" role="menuitem">Collaborations</a>
+        <a href="#awards" role="menuitem">Awards</a>
+      </div>
+    </li>
+    <li class="dropdown">
+      <button class="dropbtn" aria-haspopup="true" aria-expanded="false">Portfolio</button>
+      <div class="dropdown-content" role="menu" aria-label="Portfolio submenu">
+        <a href="#productions" role="menuitem">Productions</a>
+        <a href="#engineering" role="menuitem">Engineering</a>
+        <a href="#instruments" role="menuitem">Multi-Instrumentalist</a>
+      </div>
+    </li>
+    <li class="dropdown">
+      <button class="dropbtn" aria-haspopup="true" aria-expanded="false">Music</button>
+      <div class="dropdown-content" role="menu" aria-label="Music submenu">
+        <a href="#tracks" role="menuitem">Tracks</a>
+        <a href="#remixes" role="menuitem">Remixes</a>
+        <a href="#live" role="menuitem">Live Sessions</a>
+      </div>
+    </li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+  <section id="portfolio" aria-label="Portfolio Projects">
+    <div class="portfolio-grid">
+      <div class="portfolio-item" tabindex="0"
+           data-project="Analise"
+           data-images="https://picsum.photos/id/1011/800/600,https://picsum.photos/id/1012/800/600,https://picsum.photos/id/1013/800/600"
+           data-spotify="https://open.spotify.com/embed/track/37GmTzMhfK5CZwXh1gxtSC">
+        <img src="https://picsum.photos/id/1011/400/300" alt="Analise cover image" />
+        <div class="portfolio-overlay">Analise</div>
+      </div>
+      <div class="portfolio-item" tabindex="0"
+           data-project="Chiara Elgold"
+           data-images="https://picsum.photos/id/1021/800/600,https://picsum.photos/id/1022/800/600,https://picsum.photos/id/1023/800/600"
+           data-spotify="https://open.spotify.com/embed/track/6vcSdaV2ex9Dc1I3YPPNW6">
+        <img src="https://picsum.photos/id/1021/400/300" alt="Chiara Elgold cover image" />
+        <div class="portfolio-overlay">Chiara Elgold</div>
+      </div>
+      <div class="portfolio-item" tabindex="0"
+           data-project="Eli Yacinthe"
+           data-images="https://picsum.photos/id/1031/800/600,https://picsum.photos/id/1032/800/600,https://picsum.photos/id/1033/800/600"
+           data-spotify="https://open.spotify.com/embed/track/06psIc1XsgQVwKKyfAZaS6">
+        <img src="https://picsum.photos/id/1031/400/300" alt="Eli Yacinthe cover image" />
+        <div class="portfolio-overlay">Eli Yacinthe</div>
+      </div>
+      <div class="portfolio-item" tabindex="0"
+           data-project="Skye Harding"
+           data-images="https://picsum.photos/id/1041/800/600,https://picsum.photos/id/1042/800/600,https://picsum.photos/id/1043/800/600"
+           data-spotify="https://open.spotify.com/embed/track/4sCa2NNivwqa9BFl1SznrJy">
+        <img src="https://picsum.photos/id/1041/400/300" alt="Skye Harding cover image" />
+        <div class="portfolio-overlay">Skye Harding</div>
+      </div>
+      <div class="portfolio-item" tabindex="0"
+           data-project="giAnna"
+           data-images="https://picsum.photos/id/1051/800/600,https://picsum.photos/id/1052/800/600,https://picsum.photos/id/1053/800/600"
+           data-spotify="https://open.spotify.com/embed/track/7efqxjZwbDhKDM9BB3XqFw">
+        <img src="https://picsum.photos/id/1051/400/300" alt="giAnna cover image" />
+        <div class="portfolio-overlay">giAnna</div>
+      </div>
+      <div class="portfolio-item" tabindex="0"
+           data-project="Entifan"
+           data-images="https://picsum.photos/id/1061/800/600,https://picsum.photos/id/1062/800/600,https://picsum.photos/id/1063/800/600"
+           data-spotify="https://open.spotify.com/embed/track/6F6MJIrlGkcwXg6nGH0D0u">
+        <img src="https://picsum.photos/id/1061/400/300" alt="Entifan cover image" />
+        <div class="portfolio-overlay">Entifan</div>
+      </div>
     </div>
+  </section>
+</main>
 
-    <audio id="background-audio" autoplay loop muted>
-        <source src="The Duck Song.mp3">
-        Your browser does not support the audio element.
-    </audio>
+<!-- Lightbox for project gallery -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Project image gallery">
+  <button class="close-btn" aria-label="Close gallery">&times;</button>
+  <button class="nav-btn prev-btn" aria-label="Previous image">&#10094;</button>
+  <img src="" alt="Project image" />
+  <div id="spotify-player" aria-label="Spotify music player"></div>
+  <button class="nav-btn next-btn" aria-label="Next image">&#10095;</button>
+</div>
 
-    <div class="content">
-        <div class="nav-links">
-            <button onclick="showBio('max')">Max</button>
-            <button onclick="showBio('paige')">Paige</button>
-            <button onclick="showBio('Eunseok')">Eunseok</button>
-        </div>
+<script>
+  // Dropdown accessibility: toggle aria-expanded on hover/focus
+  const dropdowns = document.querySelectorAll('nav .dropdown');
+  dropdowns.forEach(dropdown => {
+    dropdown.addEventListener('mouseenter', () => {
+      dropdown.querySelector('.dropbtn').setAttribute('aria-expanded', 'true');
+    });
+    dropdown.addEventListener('mouseleave', () => {
+      dropdown.querySelector('.dropbtn').setAttribute('aria-expanded', 'false');
+    });
+    dropdown.querySelector('.dropbtn').addEventListener('focus', () => {
+      dropdown.querySelector('.dropbtn').setAttribute('aria-expanded', 'true');
+    });
+    dropdown.querySelector('.dropbtn').addEventListener('blur', () => {
+      dropdown.querySelector('.dropbtn').setAttribute('aria-expanded', 'false');
+    });
+  });
 
-        <div id="max" class="bio-container active">
-            <img src="MaxPhoto.jpg" alt="Max Globokar" onclick="flashSOS()">
-            <p><span class="comic">Max</span> Globokar <span class="comic">is</span> a <span class="comic">professional</span> juggler <span class="comic">and</span> unicycle <span class="comic">enthusiast</span> but <span class="comic">he</span> absolutely <span class="comic">isn't</span> a <span class="comic">clown</span>. After <span class="comic">losing</span> his <span class="comic">dog</span> in <span class="comic">a</span> clown <span class="comic">accident</span> at <span class="comic">a</span> young <span class="comic">age</span>, he <span class="comic">has</span> since <span class="comic">distanced</span> himself <span class="comic">from</span> the <span class="comic">profession</span>, trying <span class="comic">to</span> change <span class="comic">the</span> face <span class="comic">of</span> a <span class="comic">dying</span> industry <span class="comic">by</span> rebranding <span class="comic">himself</span> as <span class="comic">a</span> "professional <span class="comic">musician."</span></p>
-        </div>
+  // Lightbox gallery logic
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox.querySelector('img');
+  const spotifyPlayer = document.getElementById('spotify-player');
+  const closeBtn = lightbox.querySelector('.close-btn');
+  const prevBtn = lightbox.querySelector('.prev-btn');
+  const nextBtn = lightbox.querySelector('.next-btn');
 
-        <div id="paige" class="bio-container">
-            <img src="Paige.jpg" alt="Paige Birgenheier" onclick="flashSOS()">
-            <p><span class="comic">Paige</span> Birgenheier <span class="comic">is</span> a <span class="comic">musician</span> who <span class="comic">sings</span> sometimes <span class="comic">when</span> she <span class="comic">feels</span> like <span class="comic">it.</span></p>
-        </div>
+  let currentImages = [];
+  let currentIndex = 0;
+  let currentSpotifyUrl = '';
 
-        <div id="Eunseok" class="bio-container">
-            <img src="Eunseok.jpg" alt="Eunseok" onclick="flashSOS()">
-            <p><span class="comic">He</span> has <span class="comic">experienced</span> being <span class="comic">a</span> freshman <span class="comic">four</span> times <span class="comic">—</span> once <span class="comic">in</span> the <span class="comic">Philippines,</span> once <span class="comic">in</span> Korea, <span class="comic">once</span> in <span class="comic">Minnesota,</span> and <span class="comic">then</span> spent <span class="comic">two</span> years <span class="comic">in</span> the <span class="comic">military.</span></p>
-        </div>
-    </div>
+  function openLightbox(images, index, spotifyUrl) {
+    currentImages = images;
+    currentIndex = index;
+    currentSpotifyUrl = spotifyUrl;
+    lightboxImg.src = currentImages[currentIndex];
+    spotifyPlayer.innerHTML = `
+      <iframe src="${currentSpotifyUrl}" 
+              width="100%" height="152" 
+              frameborder="0" 
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+              loading="lazy" 
+              title="Spotify Player"></iframe>
+    `;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent background scroll
+  }
 
-    <div id="sos-message">SOS</div>
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    lightboxImg.src = '';
+    spotifyPlayer.innerHTML = '';
+    document.body.style.overflow = '';
+  }
 
-    <script>
-        function showBio(bioId) {
-            document.querySelectorAll('.bio-container').forEach(function(bio) {
-                bio.classList.remove('active');
-            });
-            document.getElementById(bioId).classList.add('active');
-        }
+  function showNext() {
+    currentIndex = (currentIndex + 1) % currentImages.length;
+    lightboxImg.src = currentImages[currentIndex];
+  }
 
-        function flashSOS() {
-            let sosMessage = document.getElementById("sos-message");
-            sosMessage.style.display = "block";
-            setTimeout(() => {
-                sosMessage.style.display = "none";
-            }, 1000);
-        }
+  function showPrev() {
+    currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+    lightboxImg.src = currentImages[currentIndex];
+  }
 
-        document.body.addEventListener("click", function() {
-            let audio = document.getElementById("background-audio");
-            audio.muted = false;
-        });
-    </script>
+  // Click portfolio items to open lightbox with Spotify embed
+  document.querySelectorAll('.portfolio-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const images = item.dataset.images.split(',');
+      const spotifyUrl = item.dataset.spotify;
+      openLightbox(images, 0, spotifyUrl);
+    });
+    // Keyboard accessibility: open on Enter or Space key
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const images = item.dataset.images.split(',');
+        const spotifyUrl = item.dataset.spotify;
+        openLightbox(images, 0, spotifyUrl);
+      }
+    });
+  });
+
+  closeBtn.addEventListener('click', closeLightbox);
+  nextBtn.addEventListener('click', showNext);
+  prevBtn.addEventListener('click', showPrev);
+
+  // Close lightbox on outside click or Escape key
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) {
+      closeLightbox();
+    }
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+      closeLightbox();
+    }
+    if (e.key === 'ArrowRight' && lightbox.classList.contains('active')) {
+      showNext();
+    }
+    if (e.key === 'ArrowLeft' && lightbox.classList.contains('active')) {
+      showPrev();
+    }
+  });
+</script>
+
 </body>
 </html>
-
